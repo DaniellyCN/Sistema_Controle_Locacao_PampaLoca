@@ -63,3 +63,5 @@ A empresa PampaLoca & Cia LTDA contratou uma equipe de programadores para criar 
   - Restrições:
     - Para devolver um veículo (excluir locação), informar a placa de veículo;
     - Deve ser possível consultar os veículos não locados (disponíveis) antes de iniciar a locação, ou seja, todos aqueles que não constam na lista de locações. Ainda, o programa deve possibilitar um filtro por potência, número de lugares e/ou categoria desses veículos disponíveis e esses veículos devem ser exibidos em ordem decrescente ou crescente de acordo com a escolha do usuário;
+    
+## Grupo: Danielly C. N. do Carmo, Milena S. Ferreira e Sabrina R. Fernandes
