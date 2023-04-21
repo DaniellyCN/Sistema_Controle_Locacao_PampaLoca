@@ -1,4 +1,11 @@
 public class GerenciarCliente implements IGerenciar{
+    
+    private Cliente cliente;
+
+    public GerenciarCliente( String nome, int CNH, int telefone, int CPF){
+        
+        this.cliente = new Cliente(nome, CNH, telefone, CPF);
+    }
 
     @Override
     public void adicionar() {
