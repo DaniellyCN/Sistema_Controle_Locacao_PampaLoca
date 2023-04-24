@@ -1,8 +1,14 @@
 public class Categoria {
+    private static final Lista listaCategoria = new Lista();
     private String nome;
     private int identificador;
 
     Categoria(int identificador, String nome){
+        this.setNome(nome);
+        this.setIdentificador(identificador);
+    }
+
+    Categoria(){
         this.setNome(nome);
         this.setIdentificador(identificador);
     }

@@ -29,7 +29,7 @@ public class Lista implements ILista {
     }
 
     @Override
-    public boolean excluir(Object conteudo) {
+    public boolean excluir(Object conteudo) {//switch
         Noh auxiliar = primeiro;
 
         while(auxiliar != null && auxiliar.getProximo() != conteudo){
@@ -66,6 +66,7 @@ public class Lista implements ILista {
     @Override
     public void listar() {
         // TODO Auto-generated method stub
+        //gson lib
         
     }
 
