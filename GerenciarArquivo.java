@@ -3,16 +3,16 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class GerenciarArquivo {
-    private ListaSimplesmente arquivoEmLista;
+    private Lista arquivoEmLista;
     private String caminho;
 
     public GerenciarArquivo(String caminho){
-        arquivoEmLista = new ListaSimplesmente();
+        arquivoEmLista = new Lista();
         this.caminho = caminho;
         //caminhoCategoria = "uploads\\Categorias.csv";
     }
 
-    public ListaSimplesmente lerArquivos(){
+    public Lista lerArquivos(){
         FileReader arquivo = null;
         BufferedReader leitura = null;
         try{
