@@ -1,6 +1,4 @@
 public class Veiculo {
-    public static Lista listaVeiculo = new Lista();
-    
     private String placa;
     private String modelo;
     private String marca;

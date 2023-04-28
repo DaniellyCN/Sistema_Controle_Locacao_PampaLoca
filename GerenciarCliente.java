@@ -8,13 +8,13 @@ public class GerenciarCliente implements IGerenciar{
     }
 
     @Override
-    public void adicionar() {
+    public void adicionar(Object cliente) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
     }
 
     @Override
-    public void excluir() {
+    public void excluir(Object cliente) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'excluir'");
     }
@@ -29,6 +29,12 @@ public class GerenciarCliente implements IGerenciar{
     public void listar() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listar'");
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 
     
