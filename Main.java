@@ -5,7 +5,6 @@ public class Main {
         GerenciarArquivo arquivo_categorias = new GerenciarArquivo("uploads\\Categorias.csv");
         GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("uploads\\Veiculos.csv");
 
-       
 
         Categoria.listaCategoria = arquivo_categorias.lerArquivos();
         
@@ -20,6 +19,17 @@ public class Main {
         Categoria.listaCategoria.adicionar(c);
 
         System.out.println(Categoria.listaCategoria.tamanho());
+
+//----------------------------------------------------------Veiculo
+
+        Veiculo.listaVeiculo = arquivo_veiculos.lerArquivos();
+
+        Veiculo v = new Veiculo();
+        
+    
+        System.out.println(Veiculo.listaVeiculo.tamanho());
+
+    
     
 
     }
