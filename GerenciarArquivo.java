@@ -20,8 +20,8 @@ public class GerenciarArquivo {
             leitura = new BufferedReader(arquivo);
             String linha = leitura.readLine();
             while(linha != null){
-                System.out.println(linha);
-                linha = leitura.readLine();
+                System.out.println(linha); // verificação por linha do arquivo se está ou não disponível no array criado
+                linha = leitura.readLine(); // leitura de linha a linha do arquivo para ver esta ou não compatível com 
                 arquivoEmLista.adicionar(linha);
             }
         }catch( IOException exception){

@@ -18,7 +18,6 @@ public class Main {
         System.out.println(Categoria.listaCategoria.tamanho());
 
         Categoria.listaCategoria.adicionar(c);
-
         System.out.println(Categoria.listaCategoria.tamanho());
     
 
