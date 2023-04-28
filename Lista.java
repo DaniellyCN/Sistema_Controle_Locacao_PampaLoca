@@ -1,5 +1,5 @@
 public class Lista implements ILista {
-    //PENDÊNCIAS: LER OS ARQUIVOS, TRATAMENTO DE EXCEÇÃO E MÉTODO LISTAR
+    //PENDÊNCIAS: TRATAMENTO DE EXCEÇÃO E MÉTODO LISTAR
     private Noh primeiro;
     private Noh ultimo;
     private int totalElementos = 0;
@@ -26,6 +26,23 @@ public class Lista implements ILista {
             primeiro = novo;
         }
         totalElementos ++;
+    }
+
+    @Override
+    public Object getElementoPorIndice(int indice) throws Exception {
+        if (indice < 0 || indice >= totalElementos) {
+            throw new IndexOutOfBoundsException("Índice inválido!");
+        }
+        
+        Noh auxiliar = primeiro;
+        int i = 0;
+        
+        while (i < indice) {
+            auxiliar = auxiliar.getProximo();
+            i++;
+        }
+        
+        return auxiliar.getConteudo();
     }
 
     @Override

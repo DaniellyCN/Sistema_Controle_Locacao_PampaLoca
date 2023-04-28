@@ -1,6 +1,6 @@
 public class Categoria {
     public static Lista listaCategoria = new Lista();
-
+    
 
     private String nome;
     private int identificador;
