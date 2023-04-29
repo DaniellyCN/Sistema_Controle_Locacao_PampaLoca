@@ -21,10 +21,10 @@ public class Main {
 
         Veiculo.listaVeiculo = arquivo_veiculos.lerArquivos();
 
-       // Veiculo v = new Veiculo();
+       Veiculo v = new Veiculo();
         
     
-        //System.out.println(Veiculo.listaVeiculo.tamanho());
+        System.out.println(Veiculo.listaVeiculo.tamanho());
 
 
         //testando o método adicionar 
