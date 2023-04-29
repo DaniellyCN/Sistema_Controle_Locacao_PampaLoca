@@ -1,4 +1,6 @@
 public class GerenciarLocacao implements IGerenciar {
+    
+
 
     @Override
     public void adicionar(Object locacao) {

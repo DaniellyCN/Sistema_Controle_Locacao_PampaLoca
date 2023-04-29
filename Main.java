@@ -26,5 +26,22 @@ public class Main {
 
             
         //}
+
+
+//----------------------------------------------------------Veiculo
+
+        //Veiculo.listaVeiculo = arquivo_veiculos.lerArquivos();
+
+       Veiculo v = new Veiculo();
+        
+    
+        //System.out.println(Veiculo.listaVeiculo.tamanho());
+
+
+        //testando o método adicionar 
+        GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo("ABC1234", "Civic", "Honda", 2022, 150, 5, "Sedan");
+       // gerenciarVeiculo.adicionar();
+      
+        gerenciarVeiculo.listar();
     }
 }
