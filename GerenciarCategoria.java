@@ -1,15 +1,26 @@
 public class GerenciarCategoria implements IGerenciar{
+    private Lista listaCategoria;
 
-    @Override
-    public void adicionar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
+    public GerenciarCategoria(){
+        listaCategoria = new Lista();
     }
 
     @Override
-    public void excluir() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'excluir'");
+    public void adicionar(Object categoria) {
+        if(categoria instanceof Categoria){
+            listaCategoria.adicionar((Categoria)categoria);
+        }else{
+            // retornar erro
+        }
+    }
+
+    @Override
+    public void excluir(Object categoria) {
+        if(categoria instanceof Categoria){
+            listaCategoria.excluir((Categoria)categoria);
+        }else{
+            // retornar erro
+        }    
     }
 
     @Override
@@ -24,4 +35,7 @@ public class GerenciarCategoria implements IGerenciar{
         throw new UnsupportedOperationException("Unimplemented method 'listar'");
     }
     
+    public String toString() {
+        return "";
+    }
 }

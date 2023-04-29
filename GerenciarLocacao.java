@@ -1,13 +1,13 @@
 public class GerenciarLocacao implements IGerenciar {
 
     @Override
-    public void adicionar() {
+    public void adicionar(Object locacao) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
     }
 
     @Override
-    public void excluir() {
+    public void excluir(Object locacao) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'excluir'");
     }
@@ -23,5 +23,9 @@ public class GerenciarLocacao implements IGerenciar {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listar'");
     }
+
+    public String toString(){
+        return "";
+    };
     
 }
