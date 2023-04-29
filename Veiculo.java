@@ -1,4 +1,5 @@
 public class Veiculo {
+    
     public static Lista listaVeiculo = new Lista();
     
     private String placa;

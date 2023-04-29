@@ -1,9 +1,12 @@
 public class GerenciarLocacao implements IGerenciar {
+    
+
 
     @Override
     public void adicionar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
+    
+      
+        //throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
     }
 
     @Override
