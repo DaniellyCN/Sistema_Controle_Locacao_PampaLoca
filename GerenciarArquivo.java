@@ -3,29 +3,29 @@ import java.io.FileReader;
 import java.io.IOException;
 //MUDAR O RETORNO PARA UMA LISTA SIMPLESMENTE EM getLinhaArquivo
 public class GerenciarArquivo {
-    private Lista arquivoEmLista;
+    private String[] arquivoEmLista;
     private String caminho;
-    private String[] colunas;
-    private int quantidadeLinhas;
 
-    public GerenciarArquivo(String caminho){
-        arquivoEmLista = new Lista();
+    public GerenciarArquivo(String caminho, int colunas){
+        arquivoEmLista = new String[colunas];
         this.caminho = caminho;
-        quantidadeLinhas = 0;
     }
 
-    public Lista lerArquivos(){
+    // retorna um o arquivo lido em vetor, onde cada elemento do vetor corresponde à uma linha do arquivo;
+    // o arquivo já está sendo lido desconsiderando a primeira linha do arquivo
+    public String[] lerArquivos(){
         FileReader arquivo = null;
         BufferedReader leitura = null;
         try{
             arquivo = new FileReader(caminho);
             leitura = new BufferedReader(arquivo);
             String linha = leitura.readLine();
+            int posicao = 0;
             while(linha != null){
-                System.out.println(linha); // verificação por linha do arquivo se está ou não disponível no array criado
-                linha = leitura.readLine(); // leitura de linha a linha do arquivo para ver esta ou não compatível com 
-                arquivoEmLista.adicionar(linha);
-                quantidadeLinhas++;
+                // System.out.println(linha);
+                linha = leitura.readLine();
+                arquivoEmLista[posicao] = linha;
+                posicao++;
             }
         }catch( IOException exception){
             System.out.println("Error: " + exception.getMessage());
@@ -40,36 +40,5 @@ public class GerenciarArquivo {
         return arquivoEmLista;
     }
 
-    // retorna um array em que cada elemento é uma coluna de uma linha. Tipo do retorno é String
 
-    //MUDAR O RETORNO PARA UMA LISTA SIMPLESMENTE
-    public String[] getLinhaArquivo(){
-        FileReader arquivo = null;
-        BufferedReader leitura = null;
-        //ListaSimplesmente colunas = new ListaSimplesmente();
-        
-        try{
-            colunas = new String[2];
-            arquivo = new FileReader(caminho);
-            leitura = new BufferedReader(arquivo);
-            String linha = leitura.readLine();
-            colunas = linha.split(";");
-            System.out.println(colunas.length);
-        }catch( IOException exception){
-            System.out.println("Error: " + exception.getMessage());
-        }finally{
-            try{
-                arquivo.close();
-                leitura.close();
-            }catch(IOException exception){
-                exception.printStackTrace();
-            }
-        }
-        return colunas;
-    }
-
-    public int tamanho(){
-        this.lerArquivos();
-        return quantidadeLinhas;
-    }
 }

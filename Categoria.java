@@ -7,11 +7,6 @@ public class Categoria {
         this.setIdentificador(identificador);
     }
 
-    Categoria(){
-        this.setNome(nome);
-        this.setIdentificador(identificador);
-    }
-
     public String getNome() {
         return nome;
     }

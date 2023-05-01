@@ -1,22 +1,31 @@
 public class GerenciarCliente implements IGerenciar{
     
-    private Cliente cliente;
+    private Lista clientes;
+    private int quantidade_clientes;
 
-    public GerenciarCliente( String nome, int CNH, int telefone, int CPF){
-        
-        this.cliente = new Cliente(nome, CNH, telefone, CPF);
+    public GerenciarCliente(){
+       clientes = new Lista();
+       quantidade_clientes = 0;
     }
 
     @Override
     public void adicionar(Object cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionar'");
+        if(cliente instanceof Cliente){
+            clientes.adicionar((Cliente)cliente);
+            quantidade_clientes++;
+        }else{
+            // retornar erro
+        }    
     }
 
     @Override
     public void excluir(Object cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'excluir'");
+        if(cliente instanceof Cliente){
+            clientes.excluir((Cliente)cliente);
+            quantidade_clientes--;
+        }else{
+            // retornar erro
+        }   
     }
 
     @Override
@@ -37,5 +46,8 @@ public class GerenciarCliente implements IGerenciar{
         return super.toString();
     }
 
-    
+    @Override
+    public int tamanho() {
+        return clientes.tamanho();
+    }
 }

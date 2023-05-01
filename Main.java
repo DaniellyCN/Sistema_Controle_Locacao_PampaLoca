@@ -1,47 +1,76 @@
-
 public class Main {
     public static void main(String[] args){
         
-        GerenciarArquivo arquivo_categorias = new GerenciarArquivo("uploads\\Categorias.csv");
-        GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("uploads\\Veiculos.csv");
-
-        GerenciarCategoria lista_categoria = new GerenciarCategoria();
-        
-
-        System.out.println(arquivo_categorias.getLinhaArquivo());
-        //System.out.println(arquivo_categorias.tamanho());
-
-        //for(int i=1; i < 8; i++){
-          //  Categoria categoria = new Categoria();
-            //for(int j=; j < 2; j++){
-            //    System.out.println(categoria.getNome());
-                //if(j==0){
-                    
-              //      categoria.setIdentificador(Integer.parseInt(arquivo_categorias.getLinhaArquivo()[0]));
-                //}else{
-                    // o else sempre vai ser o nome pq pra categoria sao sempre dois elementos no array retornado em getLinhaArquivo: o primeiro o id e o segundo o nome
-                //    categoria.setNome(arquivo_categorias.getLinhaArquivo()[1]);
-                //}
-            //}
-
-            
-        //}
+        GerenciarArquivo arquivo_categorias = new GerenciarArquivo("uploads\\Categorias.csv",8);
+        GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("uploads\\Veiculos.csv",8);
 
 
-//----------------------------------------------------------Veiculo
+        // ----------- POPULANDO A LISTA DE CATEGORIAS --------------
+        GerenciarCategoria categorias_lista = new GerenciarCategoria();
 
-        //Veiculo.listaVeiculo = arquivo_veiculos.lerArquivos();
+        for(int i = 0; i < 7; i++ ){
+            String linha = arquivo_categorias.lerArquivos()[i];
+            String[] linha_separada  = linha.split(";");
 
-       Veiculo v = new Veiculo();
+            Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);
+            //System.out.println(categoria.toString());
+            categorias_lista.adicionar(categoria); 
+        }
+        System.out.println(categorias_lista.tamanho());
         
     
-        //System.out.println(Veiculo.listaVeiculo.tamanho());
+
+        // ------------ POPULANDO A LISTA DE VEICULOS -------------------
+        GerenciarVeiculo veiculos_lista = new GerenciarVeiculo();
+
+        for(int i = 0; i < 7; i++ ){
+            String linha = arquivo_veiculos.lerArquivos()[i];
+            String[] linha_separada  = linha.split(";");
+
+            Veiculo veiculo = new Veiculo(
+                linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
+                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]);
+
+            // Criando a lista de veiculos já com o nome da categoria
+            // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS
+            String cat = "";
+            switch(linha_separada[6]){
+                case "1010":
+                cat = "esportivo";
+                break;
+
+                case "1011":
+                cat = "sedan comptacto";
+                break;
+
+                case "1012":
+                cat = "sedan medio";
+                break;
+
+                case "1013":
+                cat = "SUV compacto";
+                break;
+
+                case "1014":
+                cat = "SUV ";
+                break;
+
+                case "1015":
+                cat = "caminhonete";
+                break;
+
+                case "1016":
+                cat = "hatch";
+                break;
+            }
+            veiculo.setCategoria(cat);
+            veiculos_lista.adicionar(veiculo); 
+            System.out.println(veiculo.toString());
+        }
+        
 
 
-        //testando o método adicionar 
-        GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo("ABC1234", "Civic", "Honda", 2022, 150, 5, "Sedan");
-       // gerenciarVeiculo.adicionar();
-      
-        gerenciarVeiculo.listar();
+
+
     }
 }

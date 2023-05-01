@@ -17,10 +17,6 @@ public class Veiculo {
         this.categoria = categoria;
     }
 
-    public Veiculo(){
-        
-    }
-
     public int getAno() {
         return ano;
     }
@@ -78,6 +74,9 @@ public class Veiculo {
         this.qtdeLugares = qtdeLugares;
     }
 
-
+    public String toString(){
+        return "Placa: "+getPlaca()+ " Modelo: "+getModelo()+ " Marca: "+getMarca()+ " Ano: "+getAno()+ 
+            " Potência: "+getPotencia()+ " Lugares: "+getQtdeLugares()+ " Categoria: "+getCategoria();
+    }
 
 }

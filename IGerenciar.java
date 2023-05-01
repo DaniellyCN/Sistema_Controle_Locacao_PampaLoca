@@ -5,5 +5,5 @@ public interface IGerenciar {
     public void editarDados();
     public void listar();
     public String toString();
-
+    public int tamanho();
 }

@@ -30,4 +30,9 @@ public class GerenciarLocacao implements IGerenciar {
         return "";
     };
     
+    @Override
+    public int tamanho() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

@@ -1,31 +1,30 @@
 public class GerenciarVeiculo implements IGerenciar{
-    private Lista listaVeiculo;
-    private Veiculo veiculo;
-
+    
+    private Lista veiculos;
+    private int quantidade_veiculo;
 
     public GerenciarVeiculo(){
-        listaVeiculo = new Lista();
+        veiculos = new Lista();
+        quantidade_veiculo = 0;
     }
 
-    public GerenciarVeiculo(String placa, String modelo, String marca, int ano,int potencia,  int qtdeLugares, String categoria) {
-        this.veiculo = new Veiculo(placa, modelo, marca, ano, potencia, qtdeLugares, categoria);
-    }
 
     @Override
     public void adicionar(Object veiculo) {
         if(veiculo instanceof Veiculo){
-            listaVeiculo.adicionar((Veiculo)veiculo);
+            veiculos.adicionar((Veiculo)veiculo);
+            quantidade_veiculo++;
         }else{
             // retornar erro
         }
     
     }
     
-
     @Override
     public void excluir(Object veiculo) {
         if(veiculo instanceof Veiculo){
-            listaVeiculo.excluir((Categoria)veiculo);
+            veiculos.excluir((Categoria)veiculo);
+            quantidade_veiculo--;
         }else{
             // retornar erro
         }
@@ -55,5 +54,9 @@ public class GerenciarVeiculo implements IGerenciar{
         return super.toString();
     }
     
+    public int tamanho(){
+        return veiculos.tamanho();
+    }
+
 }
 

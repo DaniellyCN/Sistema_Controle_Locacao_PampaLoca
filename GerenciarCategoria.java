@@ -1,14 +1,15 @@
 public class GerenciarCategoria implements IGerenciar{
-    private Lista listaCategoria;
+
+    private Lista categorias;
 
     public GerenciarCategoria(){
-        listaCategoria = new Lista();
+        categorias = new Lista();
     }
 
     @Override
     public void adicionar(Object categoria) {
         if(categoria instanceof Categoria){
-            listaCategoria.adicionar((Categoria)categoria);
+            categorias.adicionar((Categoria)categoria);
         }else{
             // retornar erro
         }
@@ -17,7 +18,7 @@ public class GerenciarCategoria implements IGerenciar{
     @Override
     public void excluir(Object categoria) {
         if(categoria instanceof Categoria){
-            listaCategoria.excluir((Categoria)categoria);
+            categorias.excluir((Categoria)categoria);
         }else{
             // retornar erro
         }    
@@ -38,4 +39,9 @@ public class GerenciarCategoria implements IGerenciar{
     public String toString() {
         return "";
     }
+
+    public int tamanho(){
+        return categorias.tamanho();
+    }
+
 }

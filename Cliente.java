@@ -10,6 +10,7 @@ public class Cliente{
         this.telefone = telefone;
         this.CPF = CPF;
      }
+     
     public int getCNH() { return CNH;}
 
     public int getCPF() { return CPF;}

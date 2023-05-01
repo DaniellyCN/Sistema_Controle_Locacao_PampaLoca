@@ -9,12 +9,6 @@ public class Lista implements ILista {
         primeiro = null;
     }
 
-    
-    //Deve ser removido
-    public Noh getPrimeiro() {
-    return primeiro;
-    }
-
     @Override
     // A adição de um elemento é feita no começo da lista, ou seja, ao adicionar um elemento, os elementos posteriores 
     // são "empurrando" para o fim.
@@ -81,7 +75,7 @@ public class Lista implements ILista {
             auxiliar.getProximo().setAnterior(auxiliar.getAnterior());
             auxiliar.getAnterior().setProximo(auxiliar.getProximo());
         }
-
+        totalElementos--;
         return true;
         
     }
