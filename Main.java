@@ -15,10 +15,11 @@ public class Main {
             Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);
             //System.out.println(categoria.toString());
             categorias_lista.adicionar(categoria); 
+            //System.out.println(categoria.toString());
         }
+        System.out.println("Terceiro elemento da lista de categorias: ");
+        System.out.println(categorias_lista.getLista().getElementoPeloIndice(2));
         System.out.println(categorias_lista.tamanho());
-        
-    
 
         // ------------ POPULANDO A LISTA DE VEICULOS -------------------
         GerenciarVeiculo veiculos_lista = new GerenciarVeiculo();
@@ -65,11 +66,9 @@ public class Main {
             }
             veiculo.setCategoria(cat);
             veiculos_lista.adicionar(veiculo); 
-            System.out.println(veiculo.toString());
+            //System.out.println(veiculo.toString());
         }
-        
-
-
+        //System.out.println(veiculos_lista.listar());
 
 
     }

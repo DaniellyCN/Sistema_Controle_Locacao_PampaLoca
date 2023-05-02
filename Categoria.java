@@ -7,6 +7,10 @@ public class Categoria {
         this.setIdentificador(identificador);
     }
 
+    Categoria(){
+        
+    }
+
     public String getNome() {
         return nome;
     }
@@ -24,7 +28,7 @@ public class Categoria {
     }
 
     public String toString(){
-        return "Nome: "+getNome()+ " Identificador: "+getIdentificador();
+        return "Nome: "+getNome()+ " Identificador: "+getIdentificador()+"\n";
     }
 
 }

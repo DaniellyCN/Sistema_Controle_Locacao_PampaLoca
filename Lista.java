@@ -17,34 +17,34 @@ public class Lista implements ILista {
     public void adicionar(Object conteudo) {
         Noh novo = new Noh(conteudo);
 
-        if(primeiro == null){
+        if(ultimo == null){
             primeiro = novo;
             ultimo  = novo;
         }else{
-            novo.setProximo(primeiro);
-            primeiro.setAnterior(novo);
-            primeiro = novo;
+            ultimo.setProximo(novo);
+            novo.setAnterior(ultimo);
+            ultimo = novo;
         }
         totalElementos ++;
     }
 
-    @Override
-    public Object getElementoPorIndice(int indice) throws Exception {
+// colocar thorws
+    public Object getElementoPeloIndice(int indice){
         if (indice < 0 || indice >= totalElementos) {
             throw new IndexOutOfBoundsException("Índice inválido!");
         }
         
         Noh auxiliar = primeiro;
-        int i = 0;
+        int indiceAtual = 0;
         
-        while (i < indice) {
+        while (indiceAtual != indice) {
             auxiliar = auxiliar.getProximo();
-            i++;
+            indiceAtual++;
         }
         
         return auxiliar.getConteudo();
     }
-
+    
     @Override
     public boolean excluir(Object conteudo) {//switch
         Noh auxiliar = primeiro;
