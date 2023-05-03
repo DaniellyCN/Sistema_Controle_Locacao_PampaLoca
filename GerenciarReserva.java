@@ -16,7 +16,7 @@ public class GerenciarReserva {
             if (obj instanceof Locacao) {
                 Locacao locacao = (Locacao) obj;
                 if(locacao.getPlacaVeiculo().equals(reserva.getPlacaCarro()) && locacao.getRetirada().equals(inicio) && locacao.getDevolucao().equals(devolucao)){
-                    throw new Exception("Veículo já esta reservado para esta data.");
+                    throw new Exception("Veículo já está reservado para esta mesma data.");
                 }
             }
         }
@@ -24,12 +24,11 @@ public class GerenciarReserva {
         
     }
 
-    public void excluir(Object reserva){
-        if(reserva instanceof Reserva){
-            reservas.excluir(reserva);
-        }else{
-            // retornar erro
-        }   
+    public void excluir(Object reserva) throws Exception{
+        if(!(reserva instanceof Reserva)){
+         throw new Exception("O parametro dado não é uma reserva.");
+        }
+        reservas.excluir(reserva);
     }
 
 
@@ -40,19 +39,21 @@ public class GerenciarReserva {
 
     
     public String listar() {
-        // TODO Auto-generated method stub
-        return null;
+        String lista = "";
+        for(int i = 0; i < reservas.tamanho(); i++){
+            Object obj  = reservas.getElementoPeloIndice(i);
+            if(obj instanceof Reserva){
+                Reserva reserva = (Reserva) obj;
+                lista+= reserva.toString();
+            }
+        }
+        return lista;
     }
 
     
     public int tamanho() {
-        // TODO Auto-generated method stub
+        reservas.tamanho();
         return 0;
     }
 
-    
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
 }

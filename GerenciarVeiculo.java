@@ -10,12 +10,11 @@ public class GerenciarVeiculo implements IGerenciar{
 
 
     @Override
-    public void adicionar(Object veiculo) {
-        if(veiculo instanceof Veiculo){
-            veiculos.adicionar((Veiculo)veiculo);
-        }else{
-            // retornar erro
+    public void adicionar(Object veiculo) throws IllegalArgumentException{
+        if(!(veiculo instanceof Veiculo)){
+            throw new IllegalArgumentException("O argumento deve ser um veículo.");
         }
+        veiculos.adicionar((Veiculo)veiculo);
     
     }
     
@@ -98,7 +97,7 @@ public class GerenciarVeiculo implements IGerenciar{
         }  
     }
 
-    @Override
+    
     public String listar() {
         String lista = "";
         for(int i = 0; i < veiculos.tamanho(); i++){

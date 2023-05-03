@@ -9,12 +9,11 @@ public class GerenciarCategoria implements IGerenciar{
     }
 
     @Override
-    public void adicionar(Object categoria) {
-        if(categoria instanceof Categoria){
-            categorias.adicionar((Categoria)categoria);
-        }else{
-            // retornar erro
+    public void adicionar(Object categoria) throws IllegalArgumentException {
+        if(!(categoria instanceof Categoria)){
+            throw new IllegalArgumentException("Uma categoria deve ser informada como argumento.");
         }
+        categorias.adicionar((Categoria)categoria);
     }
 
     
@@ -83,7 +82,7 @@ public class GerenciarCategoria implements IGerenciar{
         }
     }
 
-    @Override
+
     public String listar() {
         String lista = "";
         for(int i = 0; i < categorias.tamanho(); i++){
