@@ -73,6 +73,19 @@ public class GerenciarLocacao implements IGerenciar {
         }
         return lista;
     }
+
+    public String listarUltimo(){
+        String lista = "";
+        for(int i = locacoes.tamanho(); i >= 0; i--){
+            Object obj  = locacoes.getElementoPeloIndice(i);
+            if(obj instanceof Locacao){
+                Locacao locacao = (Locacao) obj;
+                lista+= "Data da retirada: "+locacao.getRetirada()+" Data de devolução: "+locacao.getDevolucao()+" Valor cobrado: "+locacao.getValor()+"\n";
+            }
+        }
+        return lista;
+    }
+
     
     @Override
     public int tamanho() {
