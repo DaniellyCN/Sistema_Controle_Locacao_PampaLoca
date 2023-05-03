@@ -101,6 +101,19 @@ public class GerenciarCliente implements IGerenciar{
         return lista;
     }
 
+    //testar a funcao ela depois
+    public String listarUltimo(){
+        String lista = "";
+        for(int i = clientes.tamanho(); i >= 0; i--){
+            Object obj  = clientes.getElementoPeloIndice(i);
+            if(obj instanceof Cliente){
+                Cliente cliente = (Cliente) obj;
+                lista+= cliente.toString();
+            }
+        }
+        return lista;
+    }
+
     @Override
     public int tamanho() {
         return clientes.tamanho();
