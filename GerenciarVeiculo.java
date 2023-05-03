@@ -110,6 +110,18 @@ public class GerenciarVeiculo implements IGerenciar{
         }
         return lista;
     }
+
+    public String listarUltimo(){
+        String lista = "";
+        for(int i = veiculos.tamanho(); i >= 0; i--){
+            Object obj  = veiculos.getElementoPeloIndice(i);
+            if(obj instanceof Veiculo){
+                Veiculo veiculos = (Veiculo) obj;
+                lista+= veiculos.toString();
+            }
+        }
+        return lista;
+    }
     
     public int tamanho(){
         return veiculos.tamanho();
