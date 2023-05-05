@@ -4,6 +4,8 @@
  */
 package gui;
 
+import Gerenciar.Cliente;
+import Gerenciar.GerenciarCliente;
 import Gerenciar.GerenciarVeiculo;
 
 /**
@@ -11,7 +13,7 @@ import Gerenciar.GerenciarVeiculo;
  * @author Dani
  */
 public class Menu extends javax.swing.JFrame {
-   GerenciarVeiculo ger = new GerenciarVeiculo();
+  
     /**
      * Creates new form Main
      */
