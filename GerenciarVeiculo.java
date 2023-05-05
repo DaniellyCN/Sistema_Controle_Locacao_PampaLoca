@@ -98,7 +98,6 @@ public class GerenciarVeiculo implements IGerenciar{
         }  
     }
 
-    @Override
     public String listar() {
         String lista = "";
         for(int i = 0; i < veiculos.tamanho(); i++){
@@ -116,8 +115,8 @@ public class GerenciarVeiculo implements IGerenciar{
         for(int i = veiculos.tamanho(); i >= 0; i--){
             Object obj  = veiculos.getElementoPeloIndice(i);
             if(obj instanceof Veiculo){
-                Veiculo veiculos = (Veiculo) obj;
-                lista+= veiculos.toString();
+                Veiculo veiculo = (Veiculo) obj;
+                lista+= veiculo.toString();
             }
         }
         return lista;
