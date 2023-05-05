@@ -8,12 +8,11 @@ public class GerenciarLocacao implements IGerenciar {
 
     @Override
     // Incluir locação
-    public void adicionar(Object locacao) {
-        if(locacao instanceof Locacao){
-            locacoes.adicionar((Locacao)locacao);
-        }else{
-            // retornar erro
-        }    
+    public void adicionar(Object locacao) throws IllegalArgumentException{
+        if(!(locacao instanceof Locacao)){
+            throw new IllegalArgumentException("Uma locação deve ser informada como argumento.");
+        }
+        locacoes.adicionar((Locacao)locacao); 
     }
 
     // Devolver veículo
@@ -61,16 +60,29 @@ public class GerenciarLocacao implements IGerenciar {
         }      
     }
 
-    @Override
-    public String listar() {
+
+    public String listar(Lista lista_reservas) {
         String lista = "";
-        for(int i = 0; i < locacoes.tamanho(); i++){
-            Object obj  = locacoes.getElementoPeloIndice(i);
-            if(obj instanceof Locacao){
-                Locacao locacao = (Locacao) obj;
-                lista+= "Data da retirada: "+locacao.getRetirada()+" Data de devolução: "+locacao.getDevolucao()+" Valor cobrado: "+locacao.getValor()+"\n";
+        for(int j = 0; j < lista_reservas.tamanho(); j++){
+            Object obj  = lista_reservas.getElementoPeloIndice(j);
+            if(obj instanceof Reserva){
+                Reserva reserva = (Reserva) obj;
+
+                for(int i = 0; i < locacoes.tamanho(); i++){
+                    Object objeto  = locacoes.getElementoPeloIndice(i);
+                    if(objeto instanceof Locacao){
+                        Locacao locacao = (Locacao) objeto;
+
+                        if(!(reserva.getPlacaCarro().equals(locacao.getPlacaVeiculo()))){
+                            lista+= "Data da retirada: "+locacao.getRetirada()+" Data de devolução: "+locacao.getDevolucao()+" Valor cobrado: "+locacao.getValor()+"\n";
+                        }
+                    }
+                }
             }
+
+
         }
+        
         return lista;
     }
 

@@ -6,6 +6,7 @@ public class Veiculo {
     private int potencia;
     private int qtdeLugares;
     private String categoria;
+    private boolean disponivel;
 
     public Veiculo(String placa, String modelo, String marca, int ano, int potencia, int qtdeLugares, String categoria){
         this.placa = placa;
@@ -15,6 +16,7 @@ public class Veiculo {
         this.potencia = potencia;
         this.qtdeLugares = qtdeLugares;
         this.categoria = categoria;
+        this.disponivel = disponivel;
     }
 
     public Veiculo(){}
@@ -47,6 +49,10 @@ public class Veiculo {
         return qtdeLugares;
     }
 
+    public boolean isDisponivel(){
+        return disponivel;
+    }
+
     public void setAno(int ano) {
         this.ano = ano;
     }
@@ -73,6 +79,10 @@ public class Veiculo {
 
     public void setQtdeLugares(int qtdeLugares) {
         this.qtdeLugares = qtdeLugares;
+    }
+
+    public void setDisponivel(boolean disponivel){
+        this.disponivel = disponivel;
     }
 
     public String toString(){

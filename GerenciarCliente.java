@@ -9,12 +9,11 @@ public class GerenciarCliente implements IGerenciar{
     }
 
     @Override
-    public void adicionar(Object cliente) {
-        if(cliente instanceof Cliente){
-            clientes.adicionar((Cliente)cliente);
-        }else{
-            // retornar erro
-        }    
+    public void adicionar(Object cliente) throws IllegalArgumentException {
+        if(!(cliente instanceof Cliente)){
+            throw new IllegalArgumentException("Um cliente deve ser informado como argumento.");
+        }
+        clientes.adicionar((Cliente)cliente);
     }
 
     
@@ -88,7 +87,7 @@ public class GerenciarCliente implements IGerenciar{
         }    
     }
 
-    @Override
+    
     public String listar() {
         String lista = "";
         for(int i = 0; i < clientes.tamanho(); i++){

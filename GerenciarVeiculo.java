@@ -98,7 +98,6 @@ public class GerenciarVeiculo implements IGerenciar{
         }  
     }
 
-    @Override
     public String listar() {
         String lista = "";
         for(int i = 0; i < veiculos.tamanho(); i++){
@@ -116,8 +115,8 @@ public class GerenciarVeiculo implements IGerenciar{
         for(int i = veiculos.tamanho(); i >= 0; i--){
             Object obj  = veiculos.getElementoPeloIndice(i);
             if(obj instanceof Veiculo){
-                Veiculo veiculos = (Veiculo) obj;
-                lista+= veiculos.toString();
+                Veiculo veiculo = (Veiculo) obj;
+                lista+= veiculo.toString();
             }
         }
         return lista;
@@ -129,6 +128,19 @@ public class GerenciarVeiculo implements IGerenciar{
 
     public Lista getLista(){
         return veiculos;
+    }
+    public Lista getVeiculosDisponiveis() {
+        Lista veiculosDisponiveis = new Lista();
+        for (int i = 0; i < veiculos.tamanho(); i++) {
+            Object veiculo  = veiculos.getElementoPeloIndice(i);
+            if(veiculo instanceof Veiculo){
+                if(((Veiculo) veiculo).isDisponivel()){
+                veiculosDisponiveis.adicionar(veiculo);    
+                }
+                
+            }
+        }
+        return veiculosDisponiveis;
     }
 
     // Tratar método na Main

@@ -1,9 +1,9 @@
+
 public class Main {
     public static void main(String[] args){
         
-        GerenciarArquivo arquivo_categorias = new GerenciarArquivo("uploads\\Categorias.csv",8);
-        GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("uploads\\Veiculos.csv",8);
-
+        GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
+        GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Veiculos.csv",8);
 
         // ----------- POPULANDO A LISTA DE CATEGORIAS --------------
         GerenciarCategoria categorias_lista = new GerenciarCategoria();
@@ -32,44 +32,40 @@ public class Main {
                 linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
                 Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]);
 
-            // Criando a lista de veiculos já com o nome da categoria
-            // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS
-            String cat = "";
-            switch(linha_separada[6]){
-                case "1010":
-                cat = "esportivo";
-                break;
-
-                case "1011":
-                cat = "sedan comptacto";
-                break;
-
-                case "1012":
-                cat = "sedan medio";
-                break;
-
-                case "1013":
-                cat = "SUV compacto";
-                break;
-
-                case "1014":
-                cat = "SUV ";
-                break;
-
-                case "1015":
-                cat = "caminhonete";
-                break;
-
-                case "1016":
-                cat = "hatch";
-                break;
-            }
-            veiculo.setCategoria(cat);
             veiculos_lista.adicionar(veiculo); 
             //System.out.println(veiculo.toString());
         }
-        //System.out.println(veiculos_lista.listar());
+        
+        // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS
 
+        
+        for(int i = 0; i < veiculos_lista.tamanho(); i++) {
+            Object obj = veiculos_lista.getLista().getElementoPeloIndice(i); 
+            if (obj instanceof Veiculo) { 
+                Veiculo veiculo = (Veiculo) obj; 
+                boolean encontrouCategoria = false; // inicializa a variável auxiliar
+                
+                for(int j = 0; j < categorias_lista.tamanho(); j++){
+                    if (encontrouCategoria) {
+                        break; // se já encontrou a categoria, sai do loop interno
+                    }
+                    Object objeto = categorias_lista.getLista().getElementoPeloIndice(j); 
+                    if (objeto instanceof Categoria) { 
+                        Categoria categoria = (Categoria) objeto; 
+        
+                        if(Integer.parseInt(veiculo.getCategoria()) == (categoria.getIdentificador())){
+                            veiculo.setCategoria(categoria.getNome());
+                            System.out.println(categoria.getNome());
+                            encontrouCategoria = true; // atualiza a variável auxiliar
+                        }
+                    }
+                }
+                encontrouCategoria = false; // redefine a variável auxiliar
+            }
+        }
 
+            
+
+        System.out.println(veiculos_lista.listar());
     }
 }
