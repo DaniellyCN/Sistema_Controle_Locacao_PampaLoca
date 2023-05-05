@@ -15,19 +15,17 @@ import Gerenciar.Lista;
  * @author Dani
  */
 public class Menu extends javax.swing.JFrame {
-    private GerenciarVeiculo gerenciarVeiculo;
-    private GerenciarLocacao gerenciarLocacao;
+  
     private GerenciarCliente gerenciarCliente;
+    private GerenciarVeiculo gerenciarVeiculo;
 
     /**
      * Creates new form Main
      */
-    public Menu(GerenciarLocacao gerenciarLocacao, GerenciarCliente gerenciarCliente, GerenciarVeiculo gerenciarVeiculo) {
+    public Menu(GerenciarCliente gerenciarCliente, GerenciarVeiculo gerenciarVeiculo) {
         initComponents();
-        
-        this.gerenciarVeiculo= gerenciarVeiculo;
-        this.gerenciarLocacao = gerenciarLocacao;
         this.gerenciarCliente = gerenciarCliente;
+        this.gerenciarVeiculo = gerenciarVeiculo;
         
     }
 
@@ -56,6 +54,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -167,6 +167,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("Gerenciar Cliente");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem1);
 
         jMenuBar2.add(jMenu4);
@@ -179,6 +184,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jMenuItem2.setText("Gerenciar Veiculo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem2);
 
         jMenuBar2.add(jMenu5);
@@ -191,9 +201,26 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jMenuItem3.setText("Gerenciar Locações");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar2.add(jMenu2);
+
+        jMenu1.setText("Categoria");
+
+        jMenuItem4.setText("Gerenciar Categorias");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar2.add(jMenu1);
 
         setJMenuBar(jMenuBar2);
 
@@ -217,10 +244,9 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // métodos para abrir a interface gráfica.
+    
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        
-      
+     
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
@@ -231,46 +257,48 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
+    
+    ///METODO PARA ABRIR TELA DE CLIENTE
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         InterfaceCliente interfaceCliente = new InterfaceCliente(gerenciarCliente);
+        interfaceCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    //METODO PARA ABRIR TELA DE VEICULO
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        InterfaceVeiculo interfaceVeiculo = new InterfaceVeiculo(gerenciarVeiculo);
+        interfaceVeiculo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    //METODO PARA ABRIR TELA DE LOCACAO
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+ //METODO PARA ABRIR TELA DE CATEGORIAS
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                
-               
+            
+             Lista clientes = new Lista();
+             Lista veiculos = new Lista();
+             
+             new Menu(new GerenciarCliente(clientes),new GerenciarVeiculo(veiculos)).setVisible(true);
+       
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -278,6 +306,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

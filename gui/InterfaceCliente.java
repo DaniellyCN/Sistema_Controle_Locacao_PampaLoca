@@ -21,7 +21,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
         this.gerenciarCliente = gerenciarCliente;
     }
     
-    public void LoadTableCarro(){
+   public void LoadTableCarro(){
         DefaultTableModel modeloCliente = new DefaultTableModel (new Object [] {"NOME", "CPF", "TELEFONE", "CNH"},0);
         
         for(int i =0; i<listaCliente.size();i++){
@@ -223,7 +223,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
                 
             gerenciarCliente.add(cliente);
             
-            JOptionPane.showMessageDialog(null, "Carro adicionado!");         
+            JOptionPane.showMessageDialog(null, "Carro adicionado!");       
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
