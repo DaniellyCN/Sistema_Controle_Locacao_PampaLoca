@@ -1,3 +1,5 @@
+package Gerenciar;
+
 
 public class Locacao {
     private String retirada;

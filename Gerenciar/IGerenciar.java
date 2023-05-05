@@ -1,3 +1,5 @@
+package Gerenciar;
+
 public interface IGerenciar {
 
     public void adicionar(Object object);

@@ -1,3 +1,5 @@
+package Gerenciar;
+
 public class Categoria {
     private String nome;
     private int identificador;
