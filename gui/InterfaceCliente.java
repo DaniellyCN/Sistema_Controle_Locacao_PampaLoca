@@ -6,7 +6,8 @@ package gui;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Gerenciar.GerenciarCliente;
+import Gerenciar.Cliente;
 /**
  *
  * @author sabrina
@@ -215,10 +216,10 @@ public class InterfaceCliente extends javax.swing.JFrame {
             int telefone = Integer.parseInt(txTelefone.getText());
             int CNH = Integer.parseInt(txCNH.getText());
             
-            clente.setNome(nome);
-            clente.setCPF(CPF);
-            clente.setTelefone(Telefone);
-            clente.setCNH(CNH);
+            cliente.setNome(nome);
+            cliente.setCPF(CPF);
+            cliente.setTelefone(Telefone);
+            cliente.setCNH(CNH);
                 
             gerenciarCliente.add(cliente);
             
