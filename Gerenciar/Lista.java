@@ -1,3 +1,5 @@
+package Gerenciar;
+
 public class Lista implements ILista {
     //PENDÊNCIAS: TRATAMENTO DE EXCEÇÃO E MÉTODO LISTAR
     private Noh primeiro;
