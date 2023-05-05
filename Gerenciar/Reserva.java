@@ -1,3 +1,5 @@
+package Gerenciar;
+
 public class Reserva {
     private double taxa;
     private String placaCarro;

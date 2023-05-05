@@ -1,3 +1,5 @@
+package Gerenciar;
+
 public class GerenciarLocacao implements IGerenciar {
     private Lista locacoes;
 

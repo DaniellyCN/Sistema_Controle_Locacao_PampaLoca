@@ -1,3 +1,6 @@
+package Gerenciar;
+
+import Gerenciar.Categoria;
 import java.util.NoSuchElementException;
 
 public class GerenciarCategoria implements IGerenciar{
