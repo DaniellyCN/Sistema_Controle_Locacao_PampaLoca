@@ -12,7 +12,7 @@ package gui;
 public class Categoria extends javax.swing.JFrame {
 
     /** Creates new form Categoria */
-    public Categoria() {
+    public Categoria(int par, String esportivo) {
         initComponents();
     }
 
@@ -71,9 +71,13 @@ public class Categoria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Categoria().setVisible(true);
+                new Categoria(1, "Esportivo").setVisible(true);
             }
         });
+    }
+
+    void setIdentificador(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

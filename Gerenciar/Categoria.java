@@ -4,9 +4,9 @@ public class Categoria {
     private String nome;
     private int identificador;
 
-    Categoria(int identificador, String nome){
-        this.setNome(nome);
-        this.setIdentificador(identificador);
+    public Categoria(int identificador, String nome){
+        this.nome = nome;
+        this.identificador = identificador;
     }
 
     Categoria(){

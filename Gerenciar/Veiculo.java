@@ -1,5 +1,5 @@
 package Gerenciar;
-
+//mudei categoria
 public class Veiculo {
     private String placa;
     private String modelo;
@@ -8,9 +8,10 @@ public class Veiculo {
     private int potencia;
     private int qtdeLugares;
     private String categoria;
+    private Categoria categoriA;
     private boolean disponivel;
 
-    public Veiculo(String placa, String modelo, String marca, int ano, int potencia, int qtdeLugares, String categoria){
+    public Veiculo(String placa, String modelo, String marca, int ano, int potencia, int qtdeLugares,String categoria){
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
@@ -22,12 +23,18 @@ public class Veiculo {
     }
 
     public Veiculo(){}
+    
     public int getAno() {
         return ano;
     }
 
+   
     public String getCategoria() {
         return categoria;
+    }
+
+    public Categoria getCategoriA() {
+        return categoriA;
     }
 
 
@@ -55,13 +62,21 @@ public class Veiculo {
         return disponivel;
     }
 
+    public void setCategoriA(Categoria categoriA) {
+        this.categoriA = categoriA;
+    }
+
+    
     public void setAno(int ano) {
         this.ano = ano;
     }
 
+   
+   
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+    
 
     public void setMarca(String marca) {
         this.marca = marca;

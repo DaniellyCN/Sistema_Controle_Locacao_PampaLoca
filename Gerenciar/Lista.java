@@ -31,6 +31,7 @@ public class Lista implements ILista {
     }
 
 // colocar thorws
+    @Override
     public Object getElementoPeloIndice(int indice){
         if (indice < 0 || indice >= totalElementos) {
             throw new IndexOutOfBoundsException("Índice inválido!");
@@ -51,7 +52,10 @@ public class Lista implements ILista {
     public boolean excluir(Object conteudo) {//switch
         Noh auxiliar = primeiro;
 
-        while(auxiliar != null && auxiliar.getProximo() != conteudo){
+        
+       // while(auxiliar != null && auxiliar.getProximo() != conteudo)
+       //se o conteúdo do nó atual é igual ao conteúdo que  quer excluir.
+        while(auxiliar != null && !auxiliar.getConteudo().equals(conteudo)){ //linha alterada
             auxiliar = auxiliar.getProximo();
         }
 

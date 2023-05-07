@@ -1,6 +1,7 @@
 package Gerenciar;
-
 import Gerenciar.Categoria;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class GerenciarCategoria implements IGerenciar{
@@ -105,6 +106,24 @@ public class GerenciarCategoria implements IGerenciar{
     public Lista getLista(){
         return categorias;
     }
+    
+    
+    //conversor de array
+    /*public Categoria [] toArray(){
+        List<Categoria> listaCategoria = new ArrayList();
+        for(int i = 0; i < tamanho(); i ++){
+            listaCategoria.add(getCategoria(i));  
+        }
+        return (Categoria[]) listaCategoria.toArray();
+    }*/
+    
+    public Categoria[] toArray() {
+    Categoria[] categorias = new Categoria[tamanho()];
+    for (int i = 0; i < tamanho(); i++) {
+        categorias[i] = getCategoria(i);
+    }
+    return categorias;
+}
 
     // Tratar exceção na main desse método
     public Categoria getCategoria(int identificador) throws NoSuchElementException{
@@ -117,7 +136,7 @@ public class GerenciarCategoria implements IGerenciar{
                 }
             }
         }
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("Categoria não encontrada");
     }
 
 }

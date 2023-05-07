@@ -8,11 +8,20 @@ public class GerenciarVeiculo implements IGerenciar{
     
     private Lista veiculos;
     
-    //ADD
+//foi adicionado
     public GerenciarVeiculo(Lista veiculos) {
     this.veiculos = veiculos;
 }
 
+    //foi adicionado
+     public int getQuantElementos() { 
+        int quant = 0;
+       for(int i=0;i<veiculos.tamanho();i++){
+            quant++;
+        }
+        return quant;
+    }
+    
     public GerenciarVeiculo(){
         veiculos = new Lista();
     }
@@ -27,42 +36,19 @@ public class GerenciarVeiculo implements IGerenciar{
         }
     
     }
-    
-    public void excluir(String placa, Lista locacoes_lista) throws Exception {
-        boolean retornar = false;
-        Veiculo veiculo_auxiliar = new Veiculo();
-        
-        for (int i = 0; i < veiculos.tamanho(); i++) {
-            Object obj = veiculos.getElementoPeloIndice(i); 
-            if (obj instanceof Veiculo) { 
-                Veiculo veiculo = (Veiculo) obj;
-                if(veiculo.getPlaca().equals(placa)){
-                    veiculo_auxiliar = veiculo;
-                    retornar = true;
-                }
-
-            }
-        }
-        int count = 0;
-        if(retornar){
-            for(int j = 0; j < locacoes_lista.tamanho();j++){
-                count ++;
-                Object objeto = locacoes_lista.getElementoPeloIndice(j); 
-                if (objeto instanceof Locacao) { 
-                    Locacao locacao = (Locacao) objeto;
-                    if(locacao.getPlacaVeiculo() == veiculo_auxiliar.getPlaca()){
-                        throw new Exception("Existe veículo associado em alguma locação por isso não pode ser excluído.");
-                    }else{
-                        if(count == locacoes_lista.tamanho()){
-                            veiculos.excluir(veiculo_auxiliar);
-                        }
-                    }
+ 
+    public void excluir(String placa, Lista locacoesLista) throws Exception {
+        Veiculo veiculoAuxiliar = this.getVeiculo(placa);
+        for(int j = 0; j < locacoesLista.tamanho(); j++){
+            Object objeto = locacoesLista.getElementoPeloIndice(j);
+            if (objeto instanceof Locacao) {
+                Locacao locacao = (Locacao) objeto;
+                if(locacao.getPlacaVeiculo().equals(veiculoAuxiliar.getPlaca())){
+                    throw new Exception("Existe veículo associado em alguma locação por isso não pode ser excluído.");
                 }
             }
         }
-
-        throw new Exception("Veículo, com a placa informada, não encontrado.");
-
+        veiculos.excluir(veiculoAuxiliar);
     }
 
     @Override
@@ -70,7 +56,7 @@ public class GerenciarVeiculo implements IGerenciar{
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     public void editar(String atual, String atributo, String novo) {
-        for (int i = 0; i < veiculos.tamanho(); i++) {
+        /*for (int i = 0; i < veiculos.tamanho(); i++) {
             Object obj = veiculos.getElementoPeloIndice(i); // retorna um objeto
             if (obj instanceof Veiculo) { // verifica se o objeto é uma instância de Cliente
                 Veiculo veiculo = (Veiculo) obj; // faz o cast do objeto para Cliente
@@ -104,7 +90,7 @@ public class GerenciarVeiculo implements IGerenciar{
                         break;
                 }
             }
-        }  
+        } */
     }
 
     public String listar() {
@@ -153,6 +139,10 @@ public class GerenciarVeiculo implements IGerenciar{
     }
 
     // Tratar método na Main
+    //procura um objeto do tipo Veiculo dentro de uma 
+    //lista chamada veiculos, comparando a placa do veículo com o parâmetro 
+    //passado como argumento. Se a placa for encontrada na lista, o método retorna 
+    //o objeto Veiculo.
     public Veiculo getVeiculo(String placa) throws NoSuchElementException{
         for(int i = 0; i < veiculos.tamanho(); i++){
             Object obj  = veiculos.getElementoPeloIndice(i);
@@ -162,7 +152,8 @@ public class GerenciarVeiculo implements IGerenciar{
                     return veiculo;
             }
         }
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("Veículo, com a placa informada, não encontrado.");
+        
     }
 }
 

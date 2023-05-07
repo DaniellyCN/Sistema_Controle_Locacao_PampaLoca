@@ -72,5 +72,38 @@ public class Main {
             
 
         System.out.println(veiculos_lista.listar());
+        
+        
+        
+        //Verificando se está excluindo
+     GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
+    Lista locacoes_lista = new Lista();
+
+    // Adicionar alguns veículos
+    gerenciarVeiculo.adicionar(new Veiculo("AAA-1111", "Modelo1", "Marca1", 2020, 100, 5, null));
+    gerenciarVeiculo.adicionar(new Veiculo("BBB-2222", "Modelo2", "Marca2", 2019, 90, 4, null));
+    gerenciarVeiculo.adicionar(new Veiculo("CCC-3333", "Modelo3", "Marca3", 2021, 120, 7,null));
+    
+    System.out.println("Veículos cadastrados:");
+    System.out.println(gerenciarVeiculo.listar());
+    
+    // Excluir um veículo
+    try {
+        gerenciarVeiculo.excluir("BBB-2222", locacoes_lista);
+        System.out.println("Veículo com placa BBB-2222 excluído com sucesso.");
+    } catch (Exception e) {
+        System.out.println("Erro ao excluir veículo: " + e.getMessage());
+    }
+    
+    System.out.println("Veículos cadastrados após exclusão:");
+    System.out.println(gerenciarVeiculo.listar());
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

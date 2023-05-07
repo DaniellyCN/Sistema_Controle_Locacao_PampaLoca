@@ -5,6 +5,7 @@
 package gui;
 
 import Gerenciar.Cliente;
+import Gerenciar.GerenciarCategoria;
 import Gerenciar.GerenciarCliente;
 import Gerenciar.GerenciarLocacao;
 import Gerenciar.GerenciarVeiculo;
@@ -18,7 +19,7 @@ public class Menu extends javax.swing.JFrame {
   
     private GerenciarCliente gerenciarCliente;
     private GerenciarVeiculo gerenciarVeiculo;
-
+    private GerenciarCategoria gerenciarCategoria;
     /**
      * Creates new form Main
      */
@@ -26,7 +27,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.gerenciarCliente = gerenciarCliente;
         this.gerenciarVeiculo = gerenciarVeiculo;
-        
+        this.gerenciarCategoria = gerenciarCategoria;
     }
 
     /**
@@ -289,6 +290,12 @@ public class Menu extends javax.swing.JFrame {
             
              Lista clientes = new Lista();
              Lista veiculos = new Lista();
+             Lista categorias = new Lista();
+             
+            Categoria categoria = new Categoria(1, "Esportivo");
+            categorias.adicionar(categoria);
+           
+             
              
              new Menu(new GerenciarCliente(clientes),new GerenciarVeiculo(veiculos)).setVisible(true);
        
