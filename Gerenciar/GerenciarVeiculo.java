@@ -7,6 +7,11 @@ import java.util.NoSuchElementException;
 public class GerenciarVeiculo implements IGerenciar{
     
     private Lista veiculos;
+    
+    //ADD
+    public GerenciarVeiculo(Lista veiculos) {
+    this.veiculos = veiculos;
+}
 
     public GerenciarVeiculo(){
         veiculos = new Lista();

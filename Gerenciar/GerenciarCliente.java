@@ -6,6 +6,11 @@ public class GerenciarCliente implements IGerenciar{
     
     private Lista clientes;
 
+    //ADD
+    public GerenciarCliente(Lista clientes) {
+    this.clientes = clientes;
+}
+    
     public GerenciarCliente(){
        clientes = new Lista();
     }
