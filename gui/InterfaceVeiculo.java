@@ -10,9 +10,11 @@ import Gerenciar.GerenciarVeiculo;
 import Gerenciar.Lista;
 import Gerenciar.Veiculo;
 import Gerenciar.Categoria;
+import java.util.Arrays;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -31,24 +33,23 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     String modo;
     Lista locacoes_lista = new Lista();
     
-   
     public InterfaceVeiculo(GerenciarVeiculo gerenciarVeiculo1) {
         initComponents();
         this.gerenciarVeiculo = gerenciarVeiculo; 
-    
+     
         ComboBoxModel comboBoxCategoriaModel = new  DefaultComboBoxModel(gerenciarCategoria.toArray());
-        ComboBoxCategoria.setModel(comboBoxCategoriaModel);
-       
-        /*ComboBoxModel comboBoxCategoriaModel = new DefaultComboBoxModel(gerenciarCategoria.toArray());
-        ComboBoxCategoria.setModel(comboBoxCategoriaModel);*/
+        Object[] arrayCategoria = gerenciarCategoria.toArray();
+        System.out.println(Arrays.toString(arrayCategoria));
 
+        ComboBoxCategoria.setModel(comboBoxCategoriaModel);
+      
+        
         
         setLocationRelativeTo(null);
         modo="Navegar";
         ManipularInterface();
         
-        
-        
+    
         // adiciona listener de seleção à tabela
         tabelaVeiculo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
     @Override
@@ -67,18 +68,21 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
         
     }
 
+    
+     
     public void loadTableVeiculo(){
     DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
        "Placa","Modelo", "Marca","Ano", "Potencia", "Nºlugares" , "Categorias"},0);
-            for(int i = 0; i<gerenciarVeiculo.getQuantElementos();i++){
+   for(int i = 0; i<gerenciarVeiculo.getQuantElementos();i++){
                 Object linha []=new Object[]{
                 ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPlaca(),
                 ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getModelo(),
                 ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getMarca(),
                 ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getAno(),
                 ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPotencia(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getQtdeLugares()
-
+                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getQtdeLugares(),
+                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getCategoria()
+                
                  };
                  
 
@@ -91,6 +95,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
            // tabelaVeiculo.setModel(novoModelo);
            
     }  
+    
     
     public void ManipularInterface(){
         switch(modo){
@@ -166,7 +171,6 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
                 break;
         }
     }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -446,8 +450,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
            
         if(modo.equals("Novo")){
-            Categoria categoria = (Categoria) ComboBoxCategoria.getSelectedItem();
-         
+            
             Veiculo novoVeiculo = new Veiculo();
  
             String placa = placaVeiculo.getText();
@@ -456,7 +459,8 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
             int ano = Integer.parseInt(anoVeiculo.getText());
             int potencia = Integer.parseInt(potenciaVeiculo.getText());
             int qtdLugar = Integer.parseInt(qtdLugarVeiculo.getText());
-            
+            Categoria categoria = (Categoria) ComboBoxCategoria.getSelectedItem();
+         
             
             novoVeiculo.setPlaca(placa);
             novoVeiculo.setModelo(modelo);
@@ -576,7 +580,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
         anoVeiculo.setText(String.valueOf(v.getAno()));
         potenciaVeiculo.setText(String.valueOf(v.getPotencia()));
         qtdLugarVeiculo.setText(String.valueOf(v.getQtdeLugares()));
-
+        ComboBoxCategoria.getSelectedItem();
         modo = "Selecao";
         ManipularInterface();
     }
@@ -603,21 +607,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
         
         
        
-        /*modeloLista.removeAllElements();
-        
-       // iterar sobre todos os elementos da lista de veículos
-    for (int i = 0; i < gerenciarVeiculo.getQuantElementos(); i++) {
-        // adicionar cada veículo encontrado ao modelo da lista
-        modeloLista.addElement(gerenciarVeiculo.getLista().getElementoPeloIndice(i));
-    }
-        
-       System.out.println("clicando no botao "+gerenciarVeiculo.listar());
-        
-        if (modeloLista.isEmpty()) {
-        System.out.println("O modelo da lista está vazio!");
-    } else {
-        System.out.println("O modelo da lista está preenchido com " + modeloLista.getSize() + " elementos.");
-    }*/
+    
     }//GEN-LAST:event_TodosVeiculosActionPerformed
 
     /**

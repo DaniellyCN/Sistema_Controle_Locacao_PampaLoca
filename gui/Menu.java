@@ -5,11 +5,13 @@
 package gui;
 
 import Gerenciar.Cliente;
+import Gerenciar.Categoria;
 import Gerenciar.GerenciarCategoria;
 import Gerenciar.GerenciarCliente;
 import Gerenciar.GerenciarLocacao;
 import Gerenciar.GerenciarVeiculo;
 import Gerenciar.Lista;
+
 
 /**
  *
@@ -277,7 +279,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
  //METODO PARA ABRIR TELA DE CATEGORIAS
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
@@ -292,11 +294,15 @@ public class Menu extends javax.swing.JFrame {
              Lista veiculos = new Lista();
              Lista categorias = new Lista();
              
-            Categoria categoria = new Categoria(1, "Esportivo");
-            categorias.adicionar(categoria);
-           
-             
-             
+            //Categoria categoria = new Categoria(1, "Esportivo");
+            //categorias.adicionar(categoria);
+            //System.out.println("foi add uma categoria");
+            
+            GerenciarCategoria g = new GerenciarCategoria();
+            Categoria c = new Categoria(1, "Esportivo");
+            g.adicionar(c);
+            System.out.println("foi add uma categoria");
+    
              new Menu(new GerenciarCliente(clientes),new GerenciarVeiculo(veiculos)).setVisible(true);
        
             }
