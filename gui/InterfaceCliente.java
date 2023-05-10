@@ -16,7 +16,6 @@ import Gerenciar.Lista;
  * @author sabrina
  */
 public class InterfaceCliente extends javax.swing.JFrame {
-
     private GerenciarCliente gerenciarCliente = new GerenciarCliente();
     DefaultListModel modeloLista = new DefaultListModel();
     ArrayList<Cliente> listaCliente;
@@ -25,16 +24,22 @@ public class InterfaceCliente extends javax.swing.JFrame {
     public InterfaceCliente(GerenciarCliente gerenciarCliente) {
         initComponents();
         this.gerenciarCliente = gerenciarCliente;
+        
     }
     
    public void LoadTableCliente(){
         DefaultTableModel modeloCliente = new DefaultTableModel (new Object [] {"NOME", "CPF", "TELEFONE", "CNH"},0);
         
-        for(int i =0; i<listaCliente.size();i++){
-            Object linha []=new Object[]{listaCliente.get(i).getNome(),listaCliente.get(i).getCPF(),listaCliente.get(i).getTelefone(), listaCliente.get(i).getCNH()};
+        for(int i =0; i<gerenciarCliente.tamanho();i++){
+            Object linha []=new Object[]{
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getNome(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getCPF(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getTelefone(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getCNH()};
             modeloCliente.addRow(linha); 
         }
-         tbCliente.setModel(modeloCliente);
+        
+        tbCliente.setModel(modeloCliente);
     }
     public void ManipularInterface(){
         switch(modo){
@@ -273,10 +278,10 @@ public class InterfaceCliente extends javax.swing.JFrame {
             cliente.setCNH(CNH);
                 
             gerenciarCliente.adicionar(cliente);
-            listaCliente.add(cliente);
-            
-            JOptionPane.showMessageDialog(null, "Carro adicionado!");  
+            //listaCliente.add(cliente);
             LoadTableCliente();
+            JOptionPane.showMessageDialog(null, "Carro adicionado!");  
+            
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 

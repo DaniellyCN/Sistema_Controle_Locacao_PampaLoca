@@ -14,7 +14,18 @@ public class GerenciarCliente implements IGerenciar{
     public GerenciarCliente(){
        clientes = new Lista();
     }
+    
+    public int getQuantElementos() { 
+        int quant = 0;
+       for(int i=0;i<clientes.tamanho();i++){
+            quant++;
+        }
+        return quant;
+    }
 
+    public Lista getLista(){
+        return clientes;
+    }
     @Override
     public void adicionar(Object cliente) throws IllegalArgumentException {
         if(!(cliente instanceof Cliente)){

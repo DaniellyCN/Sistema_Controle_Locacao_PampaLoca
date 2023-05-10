@@ -51,18 +51,18 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
         
         // adiciona listener de seleção à tabela
         tabelaVeiculo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent event) {
-        // verifica se uma linha da tabela foi selecionada
-        if (!tabelaVeiculo.getSelectionModel().isSelectionEmpty()) {
-            // habilita o botão de Excluir
-            botaoExcluir.setEnabled(true);
-        } else {
-            // desabilita o botão de Excluir
-            botaoExcluir.setEnabled(false);
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+            // verifica se uma linha da tabela foi selecionada
+            if (!tabelaVeiculo.getSelectionModel().isSelectionEmpty()) {
+                // habilita o botão de Excluir
+                botaoExcluir.setEnabled(true);
+            } else {
+                // desabilita o botão de Excluir
+                botaoExcluir.setEnabled(false);
+            }
         }
-    }
-});
+    });
         
         
     }
