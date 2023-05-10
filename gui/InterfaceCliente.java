@@ -10,6 +10,7 @@ import Gerenciar.GerenciarCliente;
 import Gerenciar.Cliente;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import Gerenciar.Lista;
 /**
  *
  * @author sabrina
