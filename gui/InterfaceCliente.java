@@ -8,20 +8,26 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Gerenciar.GerenciarCliente;
 import Gerenciar.Cliente;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import Gerenciar.Lista;
 /**
  *
  * @author sabrina
  */
 public class InterfaceCliente extends javax.swing.JFrame {
 
-    private GerenciarCliente gerenciarCliente;
+    private GerenciarCliente gerenciarCliente = new GerenciarCliente();
+    DefaultListModel modeloLista = new DefaultListModel();
+    ArrayList<Cliente> listaCliente;
+    String modo;
     
     public InterfaceCliente(GerenciarCliente gerenciarCliente) {
         initComponents();
         this.gerenciarCliente = gerenciarCliente;
     }
     
-   public void LoadTableCarro(){
+   public void LoadTableCliente(){
         DefaultTableModel modeloCliente = new DefaultTableModel (new Object [] {"NOME", "CPF", "TELEFONE", "CNH"},0);
         
         for(int i =0; i<listaCliente.size();i++){
@@ -30,7 +36,44 @@ public class InterfaceCliente extends javax.swing.JFrame {
         }
          tbCliente.setModel(modeloCliente);
     }
-
+    public void ManipularInterface(){
+        switch(modo){
+            case "Navegar":
+            txNome.setEnabled(false);
+            txTelefone.setEnabled(false);
+            txCNH.setEnabled(false);
+            txCPF.setEnabled(false);
+           
+            break;
+            case "Novo":
+            txNome.setEnabled(true);
+            txTelefone.setEnabled(true);
+            txCNH.setEnabled(true);
+            txCPF.setEnabled(true);
+           
+            break;
+            case "Editar":
+            txNome.setEnabled(true);
+            txTelefone.setEnabled(true);
+            txCNH.setEnabled(true);
+            txCPF.setEnabled(true);
+  
+             break;
+            case "Excluir":
+            txNome.setEnabled(false);
+            txTelefone.setEnabled(false);
+            txCNH.setEnabled(false);
+          
+              break;
+            case "Selecao":
+            txNome.setEnabled(false);
+            txTelefone.setEnabled(false);
+            txCNH.setEnabled(false);
+         
+            break;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +83,6 @@ public class InterfaceCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,11 +97,11 @@ public class InterfaceCliente extends javax.swing.JFrame {
         txTelefone = new javax.swing.JTextField();
         txCNH = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
+        btnNome = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
-        jLabel1.setText("GERENCIAR CLIENTE");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -85,14 +127,6 @@ public class InterfaceCliente extends javax.swing.JFrame {
         jLabel4.setText("Telefone:");
 
         jLabel5.setText("CPF:");
-
-        txNome.setText("jTextField1");
-
-        txCPF.setText("jTextField2");
-
-        txTelefone.setText("jTextField3");
-
-        txCNH.setText("jTextField4");
 
         btSalvar.setBackground(new java.awt.Color(0, 204, 51));
         btSalvar.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,6 +190,17 @@ public class InterfaceCliente extends javax.swing.JFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
+        btnNome.setText("Novo");
+        btnNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNomeActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+
+        btnExcluir.setText("Excluir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -165,7 +210,14 @@ public class InterfaceCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEditar)
+                                .addGap(116, 116, 116)
+                                .addComponent(btnExcluir)))
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -174,34 +226,33 @@ public class InterfaceCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNome)
+                    .addComponent(btnEditar)
+                    .addComponent(btnExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("cliente", jPanel1);
+        jTabbedPane1.addTab("Cliente", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,19 +264,26 @@ public class InterfaceCliente extends javax.swing.JFrame {
 
             String nome =txNome.getText();
             int CPF = Integer.parseInt( txCPF.getText());
-            int telefone = Integer.parseInt(txTelefone.getText());
+            String telefone = txTelefone.getText();
             int CNH = Integer.parseInt(txCNH.getText());
             
             cliente.setNome(nome);
             cliente.setCPF(CPF);
-            cliente.setTelefone(Telefone);
+            cliente.setTelefone(telefone);
             cliente.setCNH(CNH);
                 
-            gerenciarCliente.add(cliente);
+            gerenciarCliente.adicionar(cliente);
+            listaCliente.add(cliente);
             
-            JOptionPane.showMessageDialog(null, "Carro adicionado!");       
+            JOptionPane.showMessageDialog(null, "Carro adicionado!");  
+            LoadTableCliente();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btnNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomeActionPerformed
+        modo="Novo";
+        ManipularInterface();
+    }//GEN-LAST:event_btnNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,7 +322,9 @@ public class InterfaceCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSalvar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNome;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
