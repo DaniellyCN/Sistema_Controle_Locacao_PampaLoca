@@ -27,25 +27,29 @@ public class Main {
         System.out.println(categorias_lista.tamanho());
 
         // ------------ POPULANDO A LISTA DE VEICULOS -------------------
-        GerenciarVeiculo veiculos_lista = new GerenciarVeiculo();
-
+        GerenciarVeiculo veiculosLista = new GerenciarVeiculo();
+        
         for(int i = 0; i < 7; i++ ){
             String linha = arquivo_veiculos.lerArquivos()[i];
             String[] linha_separada  = linha.split(";");
 
             Veiculo veiculo = new Veiculo(
                 linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
-                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]);
-
-            veiculos_lista.adicionar(veiculo); 
+                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6] 
+                    
+            );
+            System.out.println("MOSTRANDO");
+            veiculosLista.adicionar(veiculo); 
+             
+           
             //System.out.println(veiculo.toString());
         }
         
         // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS
 
         
-        for(int i = 0; i < veiculos_lista.tamanho(); i++) {
-            Object obj = veiculos_lista.getLista().getElementoPeloIndice(i); 
+        for(int i = 0; i < veiculosLista.tamanho(); i++) {
+            Object obj = veiculosLista.getLista().getElementoPeloIndice(i); 
             if (obj instanceof Veiculo) { 
                 Veiculo veiculo = (Veiculo) obj; 
                 boolean encontrouCategoria = false; // inicializa a variável auxiliar
@@ -71,7 +75,7 @@ public class Main {
 
             
 
-        System.out.println(veiculos_lista.listar());
+        System.out.println(veiculosLista.listar());
         
         
         
