@@ -42,12 +42,16 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         botaoFiltroNdeLugares = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        botaoFiltroOrdemCrescente = new javax.swing.JButton();
-        botaoFiltroOrdemDecrescente = new javax.swing.JButton();
+        botaoNumeroLugar = new javax.swing.JButton();
+        botaoFiltroOrdemCrescenteNLugar = new javax.swing.JButton();
+        botaoFiltroOrdemDecrescentePotencia = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaVeiculoDisponivel = new javax.swing.JTable();
         botaoMostrar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        txtFiltroNLugar = new javax.swing.JTextField();
+        botaoFiltroOrdemCrescentePotencia = new javax.swing.JButton();
+        botaoFiltroOrdemDecrescenteNLugar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -80,14 +84,14 @@ public class InterfaceLocacao extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("N° de lugares");
+        botaoNumeroLugar.setText("N° de lugares");
 
-        botaoFiltroOrdemCrescente.setText("Ordem crescente");
+        botaoFiltroOrdemCrescenteNLugar.setText("Ordem crescente");
 
-        botaoFiltroOrdemDecrescente.setText("Ordem decrescente");
-        botaoFiltroOrdemDecrescente.addActionListener(new java.awt.event.ActionListener() {
+        botaoFiltroOrdemDecrescentePotencia.setText("Ordem decrescente");
+        botaoFiltroOrdemDecrescentePotencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoFiltroOrdemDecrescenteActionPerformed(evt);
+                botaoFiltroOrdemDecrescentePotenciaActionPerformed(evt);
             }
         });
 
@@ -111,6 +115,15 @@ public class InterfaceLocacao extends javax.swing.JFrame {
             }
         });
 
+        botaoFiltroOrdemCrescentePotencia.setText("Ordem crescente");
+
+        botaoFiltroOrdemDecrescenteNLugar.setText("Ordem decrescente");
+        botaoFiltroOrdemDecrescenteNLugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFiltroOrdemDecrescenteNLugarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -119,23 +132,36 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(botaoFiltroNdeLugares)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoFiltroOrdemCrescente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoFiltroOrdemDecrescente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoMostrar))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 32, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFiltroNLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(botaoFiltroNdeLugares)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(botaoFiltroOrdemCrescentePotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botaoFiltroOrdemDecrescentePotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(botaoNumeroLugar)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(botaoFiltroOrdemCrescenteNLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botaoFiltroOrdemDecrescenteNLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,13 +172,19 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 .addComponent(botaoMostrar)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFiltroNdeLugares)
-                    .addComponent(jButton1)
-                    .addComponent(botaoFiltroOrdemCrescente)
-                    .addComponent(botaoFiltroOrdemDecrescente))
-                .addContainerGap(173, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFiltroOrdemDecrescentePotencia)
+                    .addComponent(botaoFiltroOrdemCrescentePotencia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoNumeroLugar)
+                    .addComponent(txtFiltroNLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFiltroOrdemCrescenteNLugar)
+                    .addComponent(botaoFiltroOrdemDecrescenteNLugar))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -293,7 +325,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(botaoNovoLocacao)
                         .addGap(18, 18, 18)
@@ -324,7 +356,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,9 +391,9 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataRetiradaActionPerformed
 
-    private void botaoFiltroOrdemDecrescenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemDecrescenteActionPerformed
+    private void botaoFiltroOrdemDecrescentePotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemDecrescentePotenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoFiltroOrdemDecrescenteActionPerformed
+    }//GEN-LAST:event_botaoFiltroOrdemDecrescentePotenciaActionPerformed
 
     
     //Obs: mudar o caminho do arquivo
@@ -444,6 +476,10 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botaoMostrarActionPerformed
 
+    private void botaoFiltroOrdemDecrescenteNLugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemDecrescenteNLugarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoFiltroOrdemDecrescenteNLugarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -484,13 +520,15 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JButton botaoEditarLocacao;
     private javax.swing.JButton botaoExcluirLocacao;
     private javax.swing.JButton botaoFiltroNdeLugares;
-    private javax.swing.JButton botaoFiltroOrdemCrescente;
-    private javax.swing.JButton botaoFiltroOrdemDecrescente;
+    private javax.swing.JButton botaoFiltroOrdemCrescenteNLugar;
+    private javax.swing.JButton botaoFiltroOrdemCrescentePotencia;
+    private javax.swing.JButton botaoFiltroOrdemDecrescenteNLugar;
+    private javax.swing.JButton botaoFiltroOrdemDecrescentePotencia;
     private javax.swing.JButton botaoMostrar;
     private javax.swing.JButton botaoNovoLocacao;
+    private javax.swing.JButton botaoNumeroLugar;
     private javax.swing.JButton botaoSalvarLocacao;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCNHCliente;
     private javax.swing.JLabel jLabel1;
@@ -508,9 +546,11 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelaVeiculoDisponivel;
     private javax.swing.JTextField txtDataDevolucao;
     private javax.swing.JTextField txtDataRetirada;
+    private javax.swing.JTextField txtFiltroNLugar;
     private javax.swing.JTextField txtValorPago;
     // End of variables declaration//GEN-END:variables
 }

@@ -86,16 +86,6 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="botaoFiltroNdeLugares" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="botaoFiltroOrdemCrescente" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="botaoFiltroOrdemDecrescente" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" pref="89" max="-2" attributes="0"/>
@@ -103,12 +93,41 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="640" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jTextField1" min="-2" pref="180" max="-2" attributes="0"/>
+                                              <Component id="txtFiltroNLugar" min="-2" pref="180" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="botaoFiltroNdeLugares" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                                  <Component id="botaoFiltroOrdemCrescentePotencia" min="-2" pref="134" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="botaoFiltroOrdemDecrescentePotencia" min="-2" pref="134" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="botaoNumeroLugar" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                  <Component id="botaoFiltroOrdemCrescenteNLugar" min="-2" pref="134" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="botaoFiltroOrdemDecrescenteNLugar" min="-2" pref="134" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="640" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -121,14 +140,21 @@
                           <Component id="botaoMostrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="botaoFiltroNdeLugares" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoFiltroOrdemCrescente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoFiltroOrdemDecrescente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoFiltroOrdemDecrescentePotencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoFiltroOrdemCrescentePotencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="173" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="botaoNumeroLugar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFiltroNLugar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoFiltroOrdemCrescenteNLugar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoFiltroOrdemDecrescenteNLugar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="132" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -147,22 +173,22 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroNdeLugaresActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="botaoNumeroLugar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="N&#xb0; de lugares"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botaoFiltroOrdemCrescente">
+                <Component class="javax.swing.JButton" name="botaoFiltroOrdemCrescenteNLugar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ordem crescente"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botaoFiltroOrdemDecrescente">
+                <Component class="javax.swing.JButton" name="botaoFiltroOrdemDecrescentePotencia">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ordem decrescente"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroOrdemDecrescenteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroOrdemDecrescentePotenciaActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -239,6 +265,23 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoMostrarActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JTextField" name="jTextField1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtFiltroNLugar">
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoFiltroOrdemCrescentePotencia">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ordem crescente"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoFiltroOrdemDecrescenteNLugar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ordem decrescente"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroOrdemDecrescenteNLugarActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -259,7 +302,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel4" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="662" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="672" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="botaoNovoLocacao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -538,7 +581,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="674" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="684" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
