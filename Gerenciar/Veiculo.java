@@ -62,6 +62,7 @@ public class Veiculo {
         return disponivel;
     }
 
+    //
     public void setCategoriA(Categoria categoriA) {
         this.categoriA = categoriA;
     }
@@ -71,8 +72,6 @@ public class Veiculo {
         this.ano = ano;
     }
 
-   
-   
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }

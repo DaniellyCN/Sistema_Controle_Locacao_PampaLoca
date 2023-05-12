@@ -3,6 +3,7 @@ import Gerenciar.Categoria;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import static javax.swing.UIManager.getString;
 
 public class GerenciarCategoria implements IGerenciar{
 
@@ -108,6 +109,16 @@ public class GerenciarCategoria implements IGerenciar{
     }
     
     
+    /*public String[] toArray() {
+    List<String> listaString = new ArrayList<>();
+    for (int i = 0; i < tamanho(); i++) {
+        listaString.add(getString(i));
+    }
+    String[] arrayString = new String[listaString.size()];
+    return listaString.toArray(arrayString);
+}*/
+
+    
     //conversor de array
     /*public Categoria [] toArray(){
         List<Categoria> listaCategoria = new ArrayList();
@@ -117,13 +128,25 @@ public class GerenciarCategoria implements IGerenciar{
         return (Categoria[]) listaCategoria.toArray();
     }*/
     
-    public Categoria[] toArray() {
+    //conversor de array
+    public Categoria [] toArray(){
+        List<Categoria> listaCategoria = new ArrayList();
+        for(int i = 0; i < tamanho(); i ++){
+            listaCategoria.add(getCategoria(i));  
+            System.out.println(listaCategoria.size());
+        }
+        //return (Categoria[]) listaCategoria.toArray();
+        return listaCategoria.toArray(new Categoria[listaCategoria.size()]);
+
+    }
+    
+    /*public Categoria[] toArray() {
     Categoria[] categorias = new Categoria[tamanho()];
     for (int i = 0; i < tamanho(); i++) {
         categorias[i] = getCategoria(i);
     }
     return categorias;
-}
+}*/
 
     // Tratar exceção na main desse método
     public Categoria getCategoria(int identificador) throws NoSuchElementException{

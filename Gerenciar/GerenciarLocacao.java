@@ -2,12 +2,21 @@ package Gerenciar;
 
 public class GerenciarLocacao implements IGerenciar {
     private Lista locacoes;
+    private Lista cagotegorias;
+    private Lista veiculos;
+    private Lista clientes;
 
     public GerenciarLocacao(){
         locacoes = new Lista();
     }
-
-
+    
+    //Foi adicionado
+    public GerenciarLocacao(Lista locacoes,Lista categorias,Lista clientes,Lista veiculos){
+        this.clientes = clientes;
+        this.cagotegorias = categorias;
+        this.veiculos = veiculos;
+        this.locacoes = locacoes;
+    }
     @Override
     // Incluir locação
     public void adicionar(Object locacao) throws IllegalArgumentException{
