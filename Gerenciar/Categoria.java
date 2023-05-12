@@ -9,7 +9,7 @@ public class Categoria {
         this.identificador = identificador;
     }
 
-    Categoria(){
+    public Categoria(){
         
     }
 

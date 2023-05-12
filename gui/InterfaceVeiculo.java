@@ -36,10 +36,14 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     public InterfaceVeiculo(GerenciarVeiculo gerenciarVeiculo1) {
         initComponents();
         this.gerenciarVeiculo = gerenciarVeiculo; 
-     
-        ComboBoxModel comboBoxCategoriaModel = new  DefaultComboBoxModel(gerenciarCategoria.toArray());
-        Object[] arrayCategoria = gerenciarCategoria.toArray();
-        System.out.println(Arrays.toString(arrayCategoria));
+
+        String[] categorias = {"esportivo","sedan comptacto","sedan medio","SUV compacto", "SUV", "caminhonete","hatch"};
+        ComboBoxModel comboBoxCategoriaModel = new  DefaultComboBoxModel(categorias);
+        ComboBoxCategoria.setModel(comboBoxCategoriaModel);
+       
+        /*ComboBoxModel comboBoxCategoriaModel = new DefaultComboBoxModel(gerenciarCategoria.toArray());
+        ComboBoxCategoria.setModel(comboBoxCategoriaModel);*/
+
 
         ComboBoxCategoria.setModel(comboBoxCategoriaModel);
       
@@ -204,7 +208,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
