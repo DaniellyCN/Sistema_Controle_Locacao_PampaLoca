@@ -64,8 +64,8 @@ public class InterfaceCategoria extends javax.swing.JFrame {
          DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
            "Identificador","Nome"},0);
     
-            GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\d00ne\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
-        
+            GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
+       
             //GerenciarCategoria categorias_lista = new GerenciarCategoria();
             
             for(int i = 0; i < 7; i++ ){

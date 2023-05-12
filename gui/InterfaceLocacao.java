@@ -22,14 +22,30 @@ import java.util.Arrays;
 public class InterfaceLocacao extends javax.swing.JFrame {
     private GerenciarLocacao gerenciarLocacao;
     
+    GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Veiculos.csv",8);
+    GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
+     GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
+    GerenciarCategoria gerenciarCategoria = new GerenciarCategoria();
+   
+    DefaultTableModel modeloV = new DefaultTableModel();   
+    
     public InterfaceLocacao(GerenciarLocacao gerenciarLocacao) {
         initComponents();
+        
         this.gerenciarLocacao = gerenciarLocacao;
+        
     }
-
-    //tabelaVeiculoDisponivel
-    public void LoadTableLocacaoponivel(){
     
+    
+
+   
+    public void LoadTableLocacaoponivel(){
+     DefaultTableModel modelo = new DefaultTableModel(new Object [] {
+        "Placa","Modelo","Marca","ano","potencia","lugares","categoria"
+    },0);
+     
+    
+     
     }
     
     @SuppressWarnings("unchecked")
@@ -395,56 +411,59 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoFiltroOrdemDecrescentePotenciaActionPerformed
 
+  
     
-    //Obs: mudar o caminho do arquivo
+    
     private void botaoMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMostrarActionPerformed
-        GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
-        GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Veiculos.csv",8);
-        // ----------- POPULANDO A LISTA DE CATEGORIAS --------------
-        GerenciarCategoria categorias_lista = new GerenciarCategoria();
-
+       
+        
+         DefaultTableModel modelo = new DefaultTableModel(new Object [] {
+        "Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);        
         for(int i = 0; i < 7; i++ ){
             String linha = arquivo_categorias.lerArquivos()[i];
             String[] linha_separada  = linha.split(";");
+            Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);   
+            gerenciarCategoria.adicionar(categoria); 
 
-            Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);
-            //System.out.println(categoria.toString());
-            categorias_lista.adicionar(categoria); 
-            //System.out.println(categoria.toString());
+            Object linhaObjeto []=new Object[]{
+                Integer.parseInt(linha_separada[0]),
+                linha_separada[1],
+            };  
         }
-            System.out.println("Terceiro elemento da lista de categorias: ");
-            System.out.println(categorias_lista.getLista().getElementoPeloIndice(2));
-            System.out.println(categorias_lista.tamanho());
-
-        // ------------ POPULANDO A LISTA DE VEICULOS -------------------
-        GerenciarVeiculo veiculosLista = new GerenciarVeiculo();
-
-        for(int i = 0; i < 7; i++ ){
+       for(int i = 0; i < 7; i++ ){
             String linha = arquivo_veiculos.lerArquivos()[i];
             String[] linha_separada  = linha.split(";");
 
+            Object linhaObjeto[] = new Object[]{
+                linha_separada[0], linha_separada[1], linha_separada[2],
+                Integer.parseInt(linha_separada[3]), Integer.parseInt(linha_separada[4]),
+                Integer.parseInt(linha_separada[5]), linha_separada[6]
+            };
+            modelo.addRow(linhaObjeto);
+                
+            gerenciarVeiculo.adicionar(linhaObjeto);
             Veiculo veiculo = new Veiculo(
                 linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
-                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6] 
+                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]      
             );
             System.out.println("MOSTRANDO");
-            veiculosLista.adicionar(veiculo); 
-        }
-        // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS 
-        for(int i = 0; i < veiculosLista.tamanho(); i++) {
-            Object obj = veiculosLista.getLista().getElementoPeloIndice(i); 
+            gerenciarVeiculo.adicionar(veiculo); 
+       }
+        // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS  -------
+        for(int i = 0; i < gerenciarVeiculo.tamanho(); i++) {
+            Object obj = gerenciarVeiculo.getLista().getElementoPeloIndice(i); 
             if (obj instanceof Veiculo) { 
                 Veiculo veiculo = (Veiculo) obj; 
                 boolean encontrouCategoria = false; // inicializa a variável auxiliar
-
-                for(int j = 0; j < categorias_lista.tamanho(); j++){
+                
+                for(int j = 0; j < gerenciarCategoria.tamanho(); j++){
                     if (encontrouCategoria) {
                         break; // se já encontrou a categoria, sai do loop interno
                     }
-                    Object objeto = categorias_lista.getLista().getElementoPeloIndice(j); 
+                    Object objeto = gerenciarCategoria.getLista().getElementoPeloIndice(j); 
                     if (objeto instanceof Categoria) { 
                         Categoria categoria = (Categoria) objeto; 
-
+        
                         if(Integer.parseInt(veiculo.getCategoria()) == (categoria.getIdentificador())){
                             veiculo.setCategoria(categoria.getNome());
                             System.out.println(categoria.getNome());
@@ -452,26 +471,18 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                         }
                     }
                 }
-                    encontrouCategoria = false; // redefine a variável auxiliar
-                }
-            }   
-
-            System.out.println(veiculosLista.listar());
-            // Mostra a lista de veículos na tabela 
-            
-        for(int i = 0; i < veiculosLista.tamanho(); i++) { //percorre cada elemento da lista
-            Object obj = veiculosLista.getLista().getElementoPeloIndice(i); // obtem o objeto que esta na posicao i da lista
-            if (obj instanceof Veiculo) { 
-                Veiculo veiculo = (Veiculo) obj; //verifica se o objeto é do tipo veiculo
-
-                String[] informacoesVeiculo = {veiculo.getPlaca(), veiculo.getModelo(), veiculo.getMarca(), Integer.toString(veiculo.getAno()), Integer.toString(veiculo.getPotencia()), Integer.toString(veiculo.getQtdeLugares()), veiculo.getCategoria()};
-                //os campos do objeto veiuculo são transformados em uma string e um array de string
-                DefaultTableModel model = (DefaultTableModel) tabelaVeiculoDisponivel.getModel();
-               //pega o modelo da tabela onde vai ser armazenado os dados que vao ser exibidos na tabela
-                model.addRow(informacoesVeiculo); // as infomações do veiculo sao add
+                encontrouCategoria = false; // redefine a variável auxiliar
             }
         }
-
+        
+        this.modeloV = modelo;
+      
+        tabelaVeiculoDisponivel.setModel(modeloV);
+     
+        
+        
+        
+      
         
         
     }//GEN-LAST:event_botaoMostrarActionPerformed

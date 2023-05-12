@@ -10,7 +10,7 @@ import Gerenciar.GerenciarVeiculo;
 import Gerenciar.Lista;
 import Gerenciar.Veiculo;
 import Gerenciar.Categoria;
-import java.util.Arrays;
+import Gerenciar.GerenciarArquivo;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -32,72 +32,126 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     DefaultListModel modeloLista = new DefaultListModel();
     String modo;
     Lista locacoes_lista = new Lista();
+    GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Veiculos.csv",8);
+    GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
+       
     
     public InterfaceVeiculo(GerenciarVeiculo gerenciarVeiculo1) {
         initComponents();
-        this.gerenciarVeiculo = gerenciarVeiculo; 
-
-        String[] categorias = {"esportivo","sedan comptacto","sedan medio","SUV compacto", "SUV", "caminhonete","hatch"};
-        ComboBoxModel comboBoxCategoriaModel = new  DefaultComboBoxModel(categorias);
-        ComboBoxCategoria.setModel(comboBoxCategoriaModel);
+        this.gerenciarVeiculo = gerenciarVeiculo;
+        //String[] categorias = {"esportivo","sedan comptacto","sedan medio","SUV compacto", "SUV", "caminhonete","hatch"};
+        //ComboBoxModel comboBoxCategoriaModel = new  DefaultComboBoxModel(categorias);
+       // ComboBoxCategoria.setModel(comboBoxCategoriaModel);
+        
        
         /*ComboBoxModel comboBoxCategoriaModel = new DefaultComboBoxModel(gerenciarCategoria.toArray());
         ComboBoxCategoria.setModel(comboBoxCategoriaModel);*/
 
 
-        ComboBoxCategoria.setModel(comboBoxCategoriaModel);
-      
-        
-        
+        //ComboBoxCategoria.setModel(comboBoxCategoriaModel);
         setLocationRelativeTo(null);
         modo="Navegar";
         ManipularInterface();
-        
+        carregamentoInicial();
     
         // adiciona listener de seleção à tabela
         tabelaVeiculo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent event) {
-        // verifica se uma linha da tabela foi selecionada
-        if (!tabelaVeiculo.getSelectionModel().isSelectionEmpty()) {
-            // habilita o botão de Excluir
-            botaoExcluir.setEnabled(true);
-        } else {
-            // desabilita o botão de Excluir
-            botaoExcluir.setEnabled(false);
-        }
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+                // verifica se uma linha da tabela foi selecionada
+            if (!tabelaVeiculo.getSelectionModel().isSelectionEmpty()) {
+                // habilita o botão de Excluir
+                botaoExcluir.setEnabled(true);
+            } else {
+                // desabilita o botão de Excluir
+                botaoExcluir.setEnabled(false);
+                }
+            }
+        });    
     }
-});
-        
-        
-    }
-
     
-     
+    public void carregamentoInicial(){
+        DefaultTableModel modelo = new DefaultTableModel(new Object [] {
+        "Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);        
+        for(int i = 0; i < 7; i++ ){
+            String linha = arquivo_categorias.lerArquivos()[i];
+            String[] linha_separada  = linha.split(";");
+            Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);   
+            gerenciarCategoria.adicionar(categoria); 
+
+            Object linhaObjeto []=new Object[]{
+                Integer.parseInt(linha_separada[0]),
+                linha_separada[1],
+            };  
+        }
+       for(int i = 0; i < 7; i++ ){
+            String linha = arquivo_veiculos.lerArquivos()[i];
+            String[] linha_separada  = linha.split(";");
+
+            Object linhaObjeto[] = new Object[]{
+                linha_separada[0], linha_separada[1], linha_separada[2],
+                Integer.parseInt(linha_separada[3]), Integer.parseInt(linha_separada[4]),
+                Integer.parseInt(linha_separada[5]), linha_separada[6]
+            };
+            modelo.addRow(linhaObjeto);
+                
+            gerenciarVeiculo.adicionar(linhaObjeto);
+            Veiculo veiculo = new Veiculo(
+                linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
+                Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]      
+            );
+            System.out.println("MOSTRANDO");
+            gerenciarVeiculo.adicionar(veiculo); 
+       }
+        // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS  -------
+        for(int i = 0; i < gerenciarVeiculo.tamanho(); i++) {
+            Object obj = gerenciarVeiculo.getLista().getElementoPeloIndice(i); 
+            if (obj instanceof Veiculo) { 
+                Veiculo veiculo = (Veiculo) obj; 
+                boolean encontrouCategoria = false; // inicializa a variável auxiliar
+                
+                for(int j = 0; j < gerenciarCategoria.tamanho(); j++){
+                    if (encontrouCategoria) {
+                        break; // se já encontrou a categoria, sai do loop interno
+                    }
+                    Object objeto = gerenciarCategoria.getLista().getElementoPeloIndice(j); 
+                    if (objeto instanceof Categoria) { 
+                        Categoria categoria = (Categoria) objeto; 
+        
+                        if(Integer.parseInt(veiculo.getCategoria()) == (categoria.getIdentificador())){
+                            veiculo.setCategoria(categoria.getNome());
+                            System.out.println(categoria.getNome());
+                            encontrouCategoria = true; // atualiza a variável auxiliar
+                        }
+                    }
+                }
+                encontrouCategoria = false; // redefine a variável auxiliar
+            }
+        }
+        this.modeloV = modelo;
+        tabelaVeiculo.setModel(modeloV);
+    }
+    
+   
+    
     public void loadTableVeiculo(){
     DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
-       "Placa","Modelo", "Marca","Ano", "Potencia", "Nºlugares" , "Categorias"},0);
-   for(int i = 0; i<gerenciarVeiculo.getQuantElementos();i++){
-                Object linha []=new Object[]{
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPlaca(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getModelo(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getMarca(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getAno(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPotencia(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getQtdeLugares(),
-                ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getCategoria()
-                
-                 };
-                 
-
-                 novoModelo.addRow(linha);
-                //tabelaVeiculo.setModel(modeloCarro);
-            }
-            System.out.println("CONFERINDO "+gerenciarVeiculo.listar());
-            this.modeloV = novoModelo;
-            tabelaVeiculo.setModel(modeloV);
-           // tabelaVeiculo.setModel(novoModelo);
-           
+    "Placa","Modelo", "Marca","Ano", "Potencia", "Nºlugares" , "Categorias"},0);
+    for(int i = 0; i<gerenciarVeiculo.getQuantElementos();i++){
+        Object linha []=new Object[]{
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPlaca(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getModelo(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getMarca(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getAno(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getPotencia(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getQtdeLugares(),
+            ((Veiculo)gerenciarVeiculo.getLista().getElementoPeloIndice(i)).getCategoria()
+         };
+        novoModelo.addRow(linha);
+    }
+    System.out.println("CONFERINDO "+gerenciarVeiculo.listar());
+    this.modeloV = novoModelo;
+    tabelaVeiculo.setModel(modeloV);    
     }  
     
     
@@ -463,16 +517,15 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
             int ano = Integer.parseInt(anoVeiculo.getText());
             int potencia = Integer.parseInt(potenciaVeiculo.getText());
             int qtdLugar = Integer.parseInt(qtdLugarVeiculo.getText());
-            Categoria categoria = (Categoria) ComboBoxCategoria.getSelectedItem();
-         
-            
+            //Categoria categoria = (Categoria) ComboBoxCategoria.getSelectedItem();
+       
             novoVeiculo.setPlaca(placa);
             novoVeiculo.setModelo(modelo);
             novoVeiculo.setMarca(marca);
             novoVeiculo.setAno(ano);
             novoVeiculo.setPotencia(potencia);
             novoVeiculo.setQtdeLugares(qtdLugar);
-            novoVeiculo.setCategoriA(categoria);
+            //novoVeiculo.setCategoriA(categoria);
             
            
             gerenciarVeiculo.adicionar(novoVeiculo);
@@ -523,15 +576,13 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoActionPerformed
-     modo="Novo";
+    modo="Novo";
     ManipularInterface();
     }//GEN-LAST:event_botaoNovoActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
-        modo="Editar";
-        ManipularInterface();
-        
-        //editar(evt);
+    modo="Editar";
+    ManipularInterface();
     }//GEN-LAST:event_botaoEditarActionPerformed
 
      
@@ -565,7 +616,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void ComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCategoriaActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_ComboBoxCategoriaActionPerformed
 
     private void tabelaVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVeiculoMouseClicked
@@ -592,9 +643,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaVeiculoMouseClicked
 
     private void TodosVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TodosVeiculosActionPerformed
-       
-          modeloLista.removeAllElements();
-        
+    modeloLista.removeAllElements();
     // iterar sobre todos os elementos da lista de veículos
     for (int i = 0; i < gerenciarVeiculo.getQuantElementos(); i++) {
         // adicionar cada veículo encontrado ao modelo da lista
@@ -602,16 +651,7 @@ public class InterfaceVeiculo extends javax.swing.JFrame {
     }
     
     // setar o modelo da lista no JList
- jList2.setModel(modeloLista);
-        
-        
-        
-        
-        
-        
-        
-       
-    
+    jList2.setModel(modeloLista);
     }//GEN-LAST:event_TodosVeiculosActionPerformed
 
     /**
