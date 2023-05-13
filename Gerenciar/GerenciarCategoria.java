@@ -1,9 +1,5 @@
 package Gerenciar;
-import Gerenciar.Categoria;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
-import static javax.swing.UIManager.getString;
 
 public class GerenciarCategoria implements IGerenciar{
 
@@ -55,12 +51,10 @@ public class GerenciarCategoria implements IGerenciar{
         }else{
             throw new Exception("Não há categoria com esse identificador na lista de categorias.");
         }
-        
-
     }
 
     @Override
-    // IMPLEMENTAR THOWRS EXCEPTIONS
+    
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     public void editar(String atual, String atributo, String novo) {
@@ -82,12 +76,10 @@ public class GerenciarCategoria implements IGerenciar{
                     default:
                         break;
                 }
-                
             }
         }
     }
-
-
+    
     public String listar() {
         String lista = "";
         for(int i = 0; i < categorias.tamanho(); i++){
@@ -108,47 +100,6 @@ public class GerenciarCategoria implements IGerenciar{
         return categorias;
     }
     
-    
-    /*public String[] toArray() {
-    List<String> listaString = new ArrayList<>();
-    for (int i = 0; i < tamanho(); i++) {
-        listaString.add(getString(i));
-    }
-    String[] arrayString = new String[listaString.size()];
-    return listaString.toArray(arrayString);
-}*/
-
-    
-    //conversor de array
-    /*public Categoria [] toArray(){
-        List<Categoria> listaCategoria = new ArrayList();
-        for(int i = 0; i < tamanho(); i ++){
-            listaCategoria.add(getCategoria(i));  
-        }
-        return (Categoria[]) listaCategoria.toArray();
-    }*/
-    
-    //conversor de array
-    public Categoria [] toArray(){
-        List<Categoria> listaCategoria = new ArrayList();
-        for(int i = 0; i < tamanho(); i ++){
-            listaCategoria.add(getCategoria(i));  
-            System.out.println(listaCategoria.size());
-        }
-        //return (Categoria[]) listaCategoria.toArray();
-        return listaCategoria.toArray(new Categoria[listaCategoria.size()]);
-
-    }
-    
-    /*public Categoria[] toArray() {
-    Categoria[] categorias = new Categoria[tamanho()];
-    for (int i = 0; i < tamanho(); i++) {
-        categorias[i] = getCategoria(i);
-    }
-    return categorias;
-}*/
-
-    // Tratar exceção na main desse método
     public Categoria getCategoria(int identificador) throws NoSuchElementException{
         for(int i = 0; i < categorias.tamanho(); i++){
             Object obj  = categorias.getElementoPeloIndice(i);

@@ -24,9 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author milena
  */
 public class InterfaceCategoria extends javax.swing.JFrame {
-    //GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
     GerenciarCategoria gerenciarCategoria = new GerenciarCategoria();
-    //GerenciarLocacao gerenciarLocacao = new GerenciarLocacao();
     DefaultTableModel modeloV = new DefaultTableModel();
     DefaultListModel modeloLista = new DefaultListModel();
     String modo;
@@ -64,55 +62,38 @@ public class InterfaceCategoria extends javax.swing.JFrame {
          DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
            "Identificador","Nome"},0);
     
-            GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
-       
-            //GerenciarCategoria categorias_lista = new GerenciarCategoria();
-            
+            GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);   
+                      
             for(int i = 0; i < 7; i++ ){
                 String linha = arquivo_categorias.lerArquivos()[i];
                 String[] linha_separada  = linha.split(";");
 
                 Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);
-                //System.out.println(categoria.toString());
                 gerenciarCategoria.adicionar(categoria); 
-                //System.out.println(categoria.toString());
-
-
                 Object linhaObjeto []=new Object[]{
                             Integer.parseInt(linha_separada[0]),
                             linha_separada[1],
-
                          };
                 novoModelo.addRow(linhaObjeto);
-
-            }
-        
-        
+            }              
         System.out.println("CONFERINDO "+gerenciarCategoria.listar());
         this.modeloV = novoModelo;
-        tabelaCategoria.setModel(modeloV);
-       // tabelaVeiculo.setModel(novoModelo);
+        tabelaCategoria.setModel(modeloV);     
     }
-    public void loadTableCategoria(){
-        
-         DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
-           "Identificador","Nome"},0);
+    public void loadTableCategoria(){       
+        DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
+        "Identificador","Nome"},0);
          
         for(int i = 0; i<gerenciarCategoria.tamanho() ;i++){
             Object linha []=new Object[]{
                 ((Categoria)gerenciarCategoria.getLista().getElementoPeloIndice(i)).getIdentificador(),
                 ((Categoria)gerenciarCategoria.getLista().getElementoPeloIndice(i)).getNome(),
-
              };
-
-             novoModelo.addRow(linha);
-            //tabelaVeiculo.setModel(modeloCarro);
+             novoModelo.addRow(linha);          
         }
         System.out.println("CONFERINDO "+gerenciarCategoria.listar());
         this.modeloV = novoModelo;
-        tabelaCategoria.setModel(modeloV);
-       // tabelaVeiculo.setModel(novoModelo);
-           
+        tabelaCategoria.setModel(modeloV);               
     }  
     
     public void ManipularInterface(){
@@ -389,11 +370,8 @@ public class InterfaceCategoria extends javax.swing.JFrame {
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         modo="Editar";
         ManipularInterface();
-        
-        //editar(evt);
     }//GEN-LAST:event_botaoEditarActionPerformed
-
-     
+ 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
         int linhaSelecionada = tabelaCategoria.getSelectedRow();
         if (linhaSelecionada < 0) {
@@ -443,8 +421,7 @@ public class InterfaceCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaCategoriaMouseClicked
 
     private void TodosVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TodosVeiculosActionPerformed
-       
-          modeloLista.removeAllElements();
+    modeloLista.removeAllElements();
         
     // iterar sobre todos os elementos da lista de veículos
     for (int i = 0; i < gerenciarCategoria.tamanho(); i++) {
@@ -453,36 +430,13 @@ public class InterfaceCategoria extends javax.swing.JFrame {
     }
     
     // setar o modelo da lista no JList
- jList2.setModel(modeloLista);
-        
-        
-        
-        
-        
-        
-        
+    jList2.setModel(modeloLista);
        
-        /*modeloLista.removeAllElements();
-        
-       // iterar sobre todos os elementos da lista de veículos
-    for (int i = 0; i < gerenciarVeiculo.getQuantElementos(); i++) {
-        // adicionar cada veículo encontrado ao modelo da lista
-        modeloLista.addElement(gerenciarVeiculo.getLista().getElementoPeloIndice(i));
-    }
-        
-       System.out.println("clicando no botao "+gerenciarVeiculo.listar());
-        
-        if (modeloLista.isEmpty()) {
-        System.out.println("O modelo da lista está vazio!");
-    } else {
-        System.out.println("O modelo da lista está preenchido com " + modeloLista.getSize() + " elementos.");
-    }*/
     }//GEN-LAST:event_TodosVeiculosActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         nomeCategoria.setText("");
         identificadorCategoria.setText("");
-        //categoriaVeiculo.setText("");
         modo="Navegar";
         ManipularInterface();
 

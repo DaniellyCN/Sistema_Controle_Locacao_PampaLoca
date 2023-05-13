@@ -1,19 +1,20 @@
 package Gerenciar;
 
-
 public class Locacao {
     private String retirada;
     private String devolucao;
     private double valor;
-    private String placaVeiculo;
-    private int cnhCliente;
+    private Veiculo placaVeiculo;
+    private String cnhCliente;
+    private Cliente CNHCliente;
 
-    public Locacao(String retirada, String devolucao, double valor, String placa, int cNH) {
+    public Locacao(String retirada, String devolucao, double valor, Veiculo placa, String cNH, Cliente CNHCliente) {
         this.retirada = retirada;
         this.devolucao = devolucao;
         this.valor = valor;
-        placaVeiculo = placa;
-        cnhCliente = cNH;
+        this.placaVeiculo = placa;
+        this.cnhCliente = cNH;
+        this.CNHCliente = CNHCliente;
     }
 
     public String getDevolucao() {
@@ -40,19 +41,26 @@ public class Locacao {
         this.valor = valor;
     }
 
-    public int getCnhCliente() {
+    public String getCnhCliente() {
         return cnhCliente;
     }
-
-    public void setCnhCliente(int cnhCliente) {
-        this.cnhCliente = cnhCliente;
+    
+     public Cliente getCNHCliente() {
+        return CNHCliente;
     }
 
-    public String getPlacaVeiculo() {
+     public void setCnhCliente(String cnhCliente) {
+        this.cnhCliente = cnhCliente;
+    }
+    public void setCnhCliente(Cliente CNHCliente) {
+        this.CNHCliente = CNHCliente;
+    }
+
+    public Veiculo getPlacaVeiculo() {
         return placaVeiculo;
     }
 
-    public void setPlacaVeiculo(String placaVeiculo) {
+    public void setPlacaVeiculo(Veiculo placaVeiculo) {
         this.placaVeiculo = placaVeiculo;
     }
 

@@ -3,7 +3,7 @@ package Gerenciar;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-//MUDAR O RETORNO PARA UMA LISTA SIMPLESMENTE EM getLinhaArquivo
+
 public class GerenciarArquivo {
     private String[] arquivoEmLista;
     private String caminho;

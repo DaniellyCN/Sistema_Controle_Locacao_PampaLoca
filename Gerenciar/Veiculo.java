@@ -62,7 +62,6 @@ public class Veiculo {
         return disponivel;
     }
 
-    //
     public void setCategoriA(Categoria categoriA) {
         this.categoriA = categoriA;
     }

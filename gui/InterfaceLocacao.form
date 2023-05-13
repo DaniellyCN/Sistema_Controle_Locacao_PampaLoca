@@ -102,13 +102,13 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jTextField1" min="-2" pref="180" max="-2" attributes="0"/>
+                                              <Component id="txtFiltroPotencia" min="-2" pref="180" max="-2" attributes="0"/>
                                               <Component id="txtFiltroNLugar" min="-2" pref="180" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="botaoFiltroNdeLugares" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="botaoFiltroPotencia" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                                   <Component id="botaoFiltroOrdemCrescentePotencia" min="-2" pref="134" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
@@ -142,8 +142,8 @@
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botaoFiltroNdeLugares" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoFiltroPotencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFiltroPotencia" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoFiltroOrdemDecrescentePotencia" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoFiltroOrdemCrescentePotencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -165,12 +165,12 @@
                     <Property name="text" type="java.lang.String" value="Classificar por:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botaoFiltroNdeLugares">
+                <Component class="javax.swing.JButton" name="botaoFiltroPotencia">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pot&#xea;ncia"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroNdeLugaresActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroPotenciaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="botaoNumeroLugar">
@@ -265,7 +265,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoMostrarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="txtFiltroPotencia">
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtFiltroNLugar">
                 </Component>
@@ -273,6 +273,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ordem crescente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoFiltroOrdemCrescentePotenciaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="botaoFiltroOrdemDecrescenteNLugar">
                   <Properties>
@@ -342,7 +345,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="tabelaLocacao">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="4">
@@ -435,7 +438,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jComboBox1" pref="279" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxVeiculo" pref="279" max="32767" attributes="0"/>
                                       <Component id="jComboBoxCNHCliente" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -455,7 +458,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -503,7 +506,7 @@
                     <Property name="text" type="java.lang.String" value="Placa do ve&#xed;culo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="jComboBoxVeiculo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>

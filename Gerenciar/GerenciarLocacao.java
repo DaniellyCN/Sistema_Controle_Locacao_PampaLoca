@@ -1,22 +1,48 @@
 package Gerenciar;
-
+import Gerenciar.Lista;
 public class GerenciarLocacao implements IGerenciar {
     private Lista locacoes;
     private Lista cagotegorias;
     private Lista veiculos;
     private Lista clientes;
+    
 
     public GerenciarLocacao(){
         locacoes = new Lista();
     }
     
-    //Foi adicionado
     public GerenciarLocacao(Lista locacoes,Lista categorias,Lista clientes,Lista veiculos){
         this.clientes = clientes;
         this.cagotegorias = categorias;
         this.veiculos = veiculos;
         this.locacoes = locacoes;
     }
+    
+    
+     public int getQuantElementos() { 
+        int quant = 0;
+       for(int i=0;i<locacoes.tamanho();i++){
+            quant++;
+        }
+        return quant;
+    }
+     
+     public String listar() {
+        String lista = "";
+        for(int i = 0; i < locacoes.tamanho(); i++){
+            Object obj  = locacoes.getElementoPeloIndice(i);
+            if(obj instanceof Locacao){
+                Locacao locacao = (Locacao) obj;
+                lista+= locacao.toString();
+            }
+        }
+        return lista;
+    }
+
+      public Lista getLista(){
+        return locacoes;
+    }
+     
     @Override
     // Incluir locação
     public void adicionar(Object locacao) throws IllegalArgumentException{
@@ -40,7 +66,7 @@ public class GerenciarLocacao implements IGerenciar {
         throw new Exception("Nenhum veículo encontrado, portanto, a locação não pode ser excluída.");
     }
 
-    // IMPLEMENTAR THOWRS EXCEPTIONS
+
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     @Override
@@ -90,8 +116,6 @@ public class GerenciarLocacao implements IGerenciar {
                     }
                 }
             }
-
-
         }
         
         return lista;

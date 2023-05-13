@@ -11,7 +11,6 @@ public class GerenciarReserva {
         reservas = reserva_lista;
     }
 
-    
     public void adicionar(Reserva reserva, Lista lista_locacao, String inicio, String devolucao) throws Exception {
         for(int i = 0; i < lista_locacao.tamanho(); i++){
             Object obj = lista_locacao.getElementoPeloIndice(i); 
@@ -33,13 +32,10 @@ public class GerenciarReserva {
         reservas.excluir(reserva);
     }
 
-
     public void editar(String atual, String atributo, String novo) {
-        // TODO Auto-generated method stub
         
     }
 
-    
     public String listar() {
         String lista = "";
         for(int i = 0; i < reservas.tamanho(); i++){
@@ -52,7 +48,6 @@ public class GerenciarReserva {
         return lista;
     }
 
-    
     public int tamanho() {
         reservas.tamanho();
         return 0;

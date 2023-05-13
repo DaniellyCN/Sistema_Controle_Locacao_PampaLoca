@@ -6,7 +6,7 @@ public class GerenciarCliente implements IGerenciar{
     
     private Lista clientes;
 
-    //ADD
+
     public GerenciarCliente(Lista clientes) {
     this.clientes = clientes;
 }
@@ -45,7 +45,8 @@ public class GerenciarCliente implements IGerenciar{
                 Object objeto = locacoes_lista.getElementoPeloIndice(j); 
                 if (objeto instanceof Locacao) { 
                     Locacao locacao = (Locacao) objeto;
-                    if(locacao.getCnhCliente() == cliente_auxiliar.getCNH()){
+                   // if(locacao.getCnhCliente() == cliente_auxiliar.getCNH()){
+                    if(Integer.parseInt(locacao.getCnhCliente()) == cliente_auxiliar.getCNH()){
                         throw new Exception("Existe cliente associado em alguma locação por isso não pode ser excluído.");
                     }else{
                         if(count == locacoes_lista.tamanho()){
@@ -60,7 +61,7 @@ public class GerenciarCliente implements IGerenciar{
     }
 
     @Override
-    // IMPLEMENTAR THOWRS EXCEPTIONS
+    
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     public void editar(String atual, String atributo, String novo) {
@@ -107,7 +108,7 @@ public class GerenciarCliente implements IGerenciar{
         return lista;
     }
 
-    //testar a funcao ela depois
+   
     public String listarUltimo(){
         String lista = "";
         for(int i = clientes.tamanho(); i >= 0; i--){

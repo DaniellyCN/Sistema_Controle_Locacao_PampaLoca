@@ -1,7 +1,6 @@
 package Gerenciar;
 
 public class Lista implements ILista {
-    //PENDÊNCIAS: TRATAMENTO DE EXCEÇÃO E MÉTODO LISTAR
     private Noh primeiro;
     private Noh ultimo;
     private int totalElementos = 0;
@@ -30,7 +29,6 @@ public class Lista implements ILista {
         totalElementos ++;
     }
 
-// colocar thorws
     @Override
     public Object getElementoPeloIndice(int indice){
         if (indice < 0 || indice >= totalElementos) {
@@ -51,8 +49,6 @@ public class Lista implements ILista {
     @Override
     public boolean excluir(Object conteudo) {//switch
         Noh auxiliar = primeiro;
-
-        
        // while(auxiliar != null && auxiliar.getProximo() != conteudo)
        //se o conteúdo do nó atual é igual ao conteúdo que  quer excluir.
         while(auxiliar != null && !auxiliar.getConteudo().equals(conteudo)){ //linha alterada
@@ -88,9 +84,7 @@ public class Lista implements ILista {
 
     @Override
     public void listar() {
-        // TODO Auto-generated method stub
-        //gson lib
-        
+ 
     }
 
     @Override

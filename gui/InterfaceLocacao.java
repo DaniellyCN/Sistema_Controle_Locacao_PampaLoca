@@ -1,4 +1,3 @@
-
 package gui;
 
 import Gerenciar.GerenciarArquivo;
@@ -6,14 +5,11 @@ import Gerenciar.GerenciarCategoria;
 import Gerenciar.GerenciarLocacao;
 import Gerenciar.GerenciarVeiculo;
 import Gerenciar.Veiculo;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Gerenciar.Categoria;
-import java.util.Arrays;
+import Gerenciar.GerenciarCliente;
+import Gerenciar.Locacao;
+
 
 /**
  *
@@ -21,33 +17,43 @@ import java.util.Arrays;
  */
 public class InterfaceLocacao extends javax.swing.JFrame {
     private GerenciarLocacao gerenciarLocacao;
-    
+    private GerenciarCliente gerenciarCliente;
     GerenciarArquivo arquivo_veiculos = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Veiculos.csv",8);
     GerenciarArquivo arquivo_categorias = new GerenciarArquivo("C:\\Users\\milena\\OneDrive\\Documentos\\NetBeansProjects\\PampaLoca\\src\\main\\java\\uploads\\Categorias.csv",8);
-     GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
+    GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
     GerenciarCategoria gerenciarCategoria = new GerenciarCategoria();
-   
     DefaultTableModel modeloV = new DefaultTableModel();   
     
     public InterfaceLocacao(GerenciarLocacao gerenciarLocacao) {
         initComponents();
-        
-        this.gerenciarLocacao = gerenciarLocacao;
-        
+        this.gerenciarLocacao = gerenciarLocacao; 
     }
-    
-    
 
-   
-    public void LoadTableLocacaoponivel(){
-     DefaultTableModel modelo = new DefaultTableModel(new Object [] {
-        "Placa","Modelo","Marca","ano","potencia","lugares","categoria"
-    },0);
-     
     
-     
+    //Método que atualiza a 2 tabela
+    public void LoadTableLocacao(){
+        DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
+       "Placa","Modelo","Marca","ano","potencia","lugares","categoria"
+       },0);
+
+       for(int i = 0; i<gerenciarLocacao.getQuantElementos();i++){
+           Object linha []=new Object[]{
+              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getRetirada(),
+              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getDevolucao(),
+              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getValor(),
+              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getPlacaVeiculo().getPlaca(),
+              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getCNHCliente().getCNH()
+  
+           };
+           this.modeloV = novoModelo;
+       }
+        this.modeloV = novoModelo;
+        tabelaLocacao.setModel(modeloV); 
     }
     
+    //Método que atualiza a 1 tabela
+    public void LoadTableLocacaoDisponivel(){
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,25 +63,25 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        botaoFiltroNdeLugares = new javax.swing.JButton();
+        botaoFiltroPotencia = new javax.swing.JButton();
         botaoNumeroLugar = new javax.swing.JButton();
         botaoFiltroOrdemCrescenteNLugar = new javax.swing.JButton();
         botaoFiltroOrdemDecrescentePotencia = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaVeiculoDisponivel = new javax.swing.JTable();
         botaoMostrar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtFiltroPotencia = new javax.swing.JTextField();
         txtFiltroNLugar = new javax.swing.JTextField();
         botaoFiltroOrdemCrescentePotencia = new javax.swing.JButton();
         botaoFiltroOrdemDecrescenteNLugar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaLocacao = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxCNHCliente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxVeiculo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtDataRetirada = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -93,10 +99,10 @@ public class InterfaceLocacao extends javax.swing.JFrame {
 
         jLabel6.setText("Classificar por:");
 
-        botaoFiltroNdeLugares.setText("Potência");
-        botaoFiltroNdeLugares.addActionListener(new java.awt.event.ActionListener() {
+        botaoFiltroPotencia.setText("Potência");
+        botaoFiltroPotencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoFiltroNdeLugaresActionPerformed(evt);
+                botaoFiltroPotenciaActionPerformed(evt);
             }
         });
 
@@ -132,6 +138,11 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         });
 
         botaoFiltroOrdemCrescentePotencia.setText("Ordem crescente");
+        botaoFiltroOrdemCrescentePotencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFiltroOrdemCrescentePotenciaActionPerformed(evt);
+            }
+        });
 
         botaoFiltroOrdemDecrescenteNLugar.setText("Ordem decrescente");
         botaoFiltroOrdemDecrescenteNLugar.addActionListener(new java.awt.event.ActionListener() {
@@ -160,12 +171,12 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFiltroPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFiltroNLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(botaoFiltroNdeLugares)
+                                        .addComponent(botaoFiltroPotencia)
                                         .addGap(51, 51, 51)
                                         .addComponent(botaoFiltroOrdemCrescentePotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,8 +201,8 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoFiltroNdeLugares)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFiltroPotencia)
+                    .addComponent(txtFiltroPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoFiltroOrdemDecrescentePotencia)
                     .addComponent(botaoFiltroOrdemCrescentePotencia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -221,7 +232,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Veículo disponível", jPanel3);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaLocacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -232,7 +243,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 "CNH", "Placa", "Retirada", "Devolução", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaLocacao);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar"));
 
@@ -293,7 +304,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, 0, 279, Short.MAX_VALUE)
+                            .addComponent(jComboBoxVeiculo, 0, 279, Short.MAX_VALUE)
                             .addComponent(jComboBoxCNHCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -307,7 +318,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -395,59 +406,57 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoFiltroNdeLugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroNdeLugaresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoFiltroNdeLugaresActionPerformed
+    private void botaoFiltroPotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroPotenciaActionPerformed
+    int potencia = Integer.parseInt(txtFiltroPotencia.getText());
+    DefaultTableModel modelo = new DefaultTableModel(new Object [] {"Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);
+    
+    for(int i = 0; i < gerenciarVeiculo.tamanho(); i++) {
+        Object obj = gerenciarVeiculo.getLista().getElementoPeloIndice(i); 
+        if (obj instanceof Veiculo) { 
+            Veiculo veiculo = (Veiculo) obj; 
+            if (Integer.toString(veiculo.getPotencia()).contains("1")) { 
+                Object linhaObjeto[] = new Object[]{
+                    veiculo.getPlaca(), veiculo.getModelo(), veiculo.getMarca(),
+                    veiculo.getAno(), veiculo.getPotencia(), veiculo.getQtdeLugares(),
+                    veiculo.getCategoria()
+                };
+                modelo.addRow(linhaObjeto);
+            }
+        }
+    }
+    tabelaVeiculoDisponivel.setModel(modelo);  
+    }//GEN-LAST:event_botaoFiltroPotenciaActionPerformed
 
     private void botaoSalvarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarLocacaoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botaoSalvarLocacaoActionPerformed
 
     private void txtDataRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataRetiradaActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_txtDataRetiradaActionPerformed
 
     private void botaoFiltroOrdemDecrescentePotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemDecrescentePotenciaActionPerformed
-        // TODO add your handling code here:
+ 
     }//GEN-LAST:event_botaoFiltroOrdemDecrescentePotenciaActionPerformed
 
-  
-    
-    
     private void botaoMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMostrarActionPerformed
-       
-        
-         DefaultTableModel modelo = new DefaultTableModel(new Object [] {
-        "Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);        
+    DefaultTableModel modelo = new DefaultTableModel(new Object [] {
+    "Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);        
         for(int i = 0; i < 7; i++ ){
-            String linha = arquivo_categorias.lerArquivos()[i];
-            String[] linha_separada  = linha.split(";");
-            Categoria categoria = new Categoria(Integer.parseInt(linha_separada[0]),linha_separada[1]);   
-            gerenciarCategoria.adicionar(categoria); 
-
-            Object linhaObjeto []=new Object[]{
-                Integer.parseInt(linha_separada[0]),
-                linha_separada[1],
-            };  
-        }
-       for(int i = 0; i < 7; i++ ){
             String linha = arquivo_veiculos.lerArquivos()[i];
             String[] linha_separada  = linha.split(";");
-
             Object linhaObjeto[] = new Object[]{
                 linha_separada[0], linha_separada[1], linha_separada[2],
                 Integer.parseInt(linha_separada[3]), Integer.parseInt(linha_separada[4]),
                 Integer.parseInt(linha_separada[5]), linha_separada[6]
             };
-            modelo.addRow(linhaObjeto);
-                
+            modelo.addRow(linhaObjeto);   
             gerenciarVeiculo.adicionar(linhaObjeto);
             Veiculo veiculo = new Veiculo(
                 linha_separada[0],linha_separada[1],linha_separada[2],Integer.parseInt(linha_separada[3]),
                 Integer.parseInt(linha_separada[4]),Integer.parseInt(linha_separada[5]),linha_separada[6]      
             );
-            System.out.println("MOSTRANDO");
-            gerenciarVeiculo.adicionar(veiculo); 
+            gerenciarVeiculo.adicionar(veiculo);  
        }
         // ------------ SUBSTITUINDO O ID DA CATEGORIA PELO NOME, NA LISTA DE VEICULOS  -------
         for(int i = 0; i < gerenciarVeiculo.tamanho(); i++) {
@@ -463,7 +472,6 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                     Object objeto = gerenciarCategoria.getLista().getElementoPeloIndice(j); 
                     if (objeto instanceof Categoria) { 
                         Categoria categoria = (Categoria) objeto; 
-        
                         if(Integer.parseInt(veiculo.getCategoria()) == (categoria.getIdentificador())){
                             veiculo.setCategoria(categoria.getNome());
                             System.out.println(categoria.getNome());
@@ -474,22 +482,19 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 encontrouCategoria = false; // redefine a variável auxiliar
             }
         }
-        
+      
         this.modeloV = modelo;
-      
-        tabelaVeiculoDisponivel.setModel(modeloV);
-     
-        
-        
-        
-      
-        
+        tabelaVeiculoDisponivel.setModel(modeloV); 
         
     }//GEN-LAST:event_botaoMostrarActionPerformed
 
     private void botaoFiltroOrdemDecrescenteNLugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemDecrescenteNLugarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoFiltroOrdemDecrescenteNLugarActionPerformed
+
+    private void botaoFiltroOrdemCrescentePotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltroOrdemCrescentePotenciaActionPerformed
+
+    }//GEN-LAST:event_botaoFiltroOrdemCrescentePotenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,18 +535,18 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JButton botaoCancelarLocacao;
     private javax.swing.JButton botaoEditarLocacao;
     private javax.swing.JButton botaoExcluirLocacao;
-    private javax.swing.JButton botaoFiltroNdeLugares;
     private javax.swing.JButton botaoFiltroOrdemCrescenteNLugar;
     private javax.swing.JButton botaoFiltroOrdemCrescentePotencia;
     private javax.swing.JButton botaoFiltroOrdemDecrescenteNLugar;
     private javax.swing.JButton botaoFiltroOrdemDecrescentePotencia;
+    private javax.swing.JButton botaoFiltroPotencia;
     private javax.swing.JButton botaoMostrar;
     private javax.swing.JButton botaoNovoLocacao;
     private javax.swing.JButton botaoNumeroLugar;
     private javax.swing.JButton botaoSalvarLocacao;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCNHCliente;
+    private javax.swing.JComboBox<String> jComboBoxVeiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -556,12 +561,12 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabelaLocacao;
     private javax.swing.JTable tabelaVeiculoDisponivel;
     private javax.swing.JTextField txtDataDevolucao;
     private javax.swing.JTextField txtDataRetirada;
     private javax.swing.JTextField txtFiltroNLugar;
+    private javax.swing.JTextField txtFiltroPotencia;
     private javax.swing.JTextField txtValorPago;
     // End of variables declaration//GEN-END:variables
 }
