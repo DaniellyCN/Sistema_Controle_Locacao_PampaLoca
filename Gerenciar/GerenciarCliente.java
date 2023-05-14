@@ -14,6 +14,10 @@ public class GerenciarCliente implements IGerenciar{
     public GerenciarCliente(){
        clientes = new Lista();
     }
+    
+    public Lista getLista(){
+        return clientes;
+    }
 
     @Override
     public void adicionar(Object cliente) throws IllegalArgumentException {

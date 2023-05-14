@@ -16,11 +16,11 @@ import Gerenciar.Lista;
  * @author sabrina
  */
 public class InterfaceCliente extends javax.swing.JFrame {
-
     private GerenciarCliente gerenciarCliente = new GerenciarCliente();
     DefaultListModel modeloLista = new DefaultListModel();
     ArrayList<Cliente> listaCliente;
     String modo;
+    Lista locacoes_lista = new Lista();
     
     public InterfaceCliente(GerenciarCliente gerenciarCliente) {
         initComponents();
@@ -30,10 +30,16 @@ public class InterfaceCliente extends javax.swing.JFrame {
    public void LoadTableCliente(){
         DefaultTableModel modeloCliente = new DefaultTableModel (new Object [] {"NOME", "CPF", "TELEFONE", "CNH"},0);
         
-        for(int i =0; i<listaCliente.size();i++){
-            Object linha []=new Object[]{listaCliente.get(i).getNome(),listaCliente.get(i).getCPF(),listaCliente.get(i).getTelefone(), listaCliente.get(i).getCNH()};
+        for(int i =0; i<gerenciarCliente.tamanho();i++){
+            Object linha []=new Object[]{
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getNome(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getCPF(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getTelefone(),
+                ((Cliente)gerenciarCliente.getLista().getElementoPeloIndice(i)).getCNH()};
             modeloCliente.addRow(linha); 
         }
+        
+     
          tbCliente.setModel(modeloCliente);
     }
     public void ManipularInterface(){
@@ -116,6 +122,11 @@ public class InterfaceCliente extends javax.swing.JFrame {
                 "NOME", "CPF", "TELEFONE", "CNH"
             }
         ));
+        tbCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbCliente);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
@@ -198,8 +209,18 @@ public class InterfaceCliente extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,7 +280,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if(modo.equals("Novo")){
+         if(modo.equals("Novo")){
             Cliente cliente = new Cliente();
 
             String nome =txNome.getText();
@@ -273,17 +294,76 @@ public class InterfaceCliente extends javax.swing.JFrame {
             cliente.setCNH(CNH);
                 
             gerenciarCliente.adicionar(cliente);
-            listaCliente.add(cliente);
+            //listaCliente.add(cliente);
             
             JOptionPane.showMessageDialog(null, "Carro adicionado!");  
-            LoadTableCliente();
+            
+        }else if(modo.equals("Editar")){
+            int index = tbCliente.getSelectedRow();
+            
+            if(index >= 0 && index < gerenciarCliente.tamanho()){
+                Cliente cliente = (Cliente) gerenciarCliente.getLista().getElementoPeloIndice(index);
+                cliente.setNome(txNome.getText());
+                cliente.setCPF(Integer.parseInt(txCPF.getText()));
+                cliente.setTelefone(txTelefone.getText());
+                cliente.setCNH(Integer.parseInt(txCNH.getText()));
+            }
+            
         }
+        LoadTableCliente();
+        modo="Navegar";
+        ManipularInterface();
+        
+        txNome.setText("");
+        txCPF.setText("");
+        txTelefone.setText("");
+        txCNH.setText("");
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btnNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomeActionPerformed
         modo="Novo";
         ManipularInterface();
     }//GEN-LAST:event_btnNomeActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        modo="Editar";
+        ManipularInterface();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void tbClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClienteMouseClicked
+        int index = tbCliente.getSelectedRow();
+
+        if (index >= 0 && index < gerenciarCliente.tamanho()) {
+            // Obtém o veículo correspondente à linha selecionada
+          Cliente C = (Cliente) gerenciarCliente.getLista().getElementoPeloIndice(index);
+
+          // Carrega os dados do veículo na tela
+            txNome.setText(C.getNome());
+            txCPF.setText(String.valueOf(C.getCPF()));
+            txTelefone.setText(C.getTelefone());
+            txCNH.setText(String.valueOf(C.getCNH()));
+            
+            modo = "Selecao";
+            ManipularInterface();
+        }
+    }//GEN-LAST:event_tbClienteMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int index = tbCliente.getSelectedRow();
+        
+        int CNH = Integer.parseInt(tbCliente.getValueAt(index, 3).toString());
+        if (index>=0 && index<gerenciarCliente.tamanho()){
+            try {
+                gerenciarCliente.excluir(CNH,locacoes_lista);
+                JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possivel encontrado.");
+            }
+        }
+        LoadTableCliente();
+        modo="Navegar";
+        ManipularInterface();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
