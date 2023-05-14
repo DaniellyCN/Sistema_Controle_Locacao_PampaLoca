@@ -54,16 +54,20 @@ public class GerenciarLocacao implements IGerenciar {
 
     // Devolver veículo
     public void excluir(String placa) throws Exception{
+        
         for(int i = 0; i < locacoes.tamanho(); i++){
             Object obj = locacoes.getElementoPeloIndice(i); 
             if (obj instanceof Locacao) {
                 Locacao locacao = (Locacao) obj;
                 if(locacao.getPlacaVeiculo().equals(placa)){
                     locacoes.excluir((Locacao)locacao);
+                   
                 }
             }
         }
+        
         throw new Exception("Nenhum veículo encontrado, portanto, a locação não pode ser excluída.");
+       
     }
 
 

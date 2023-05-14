@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import Gerenciar.Categoria;
 import Gerenciar.GerenciarCliente;
 import Gerenciar.Locacao;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -23,29 +25,36 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     GerenciarVeiculo gerenciarVeiculo = new GerenciarVeiculo();
     GerenciarCategoria gerenciarCategoria = new GerenciarCategoria();
     DefaultTableModel modeloV = new DefaultTableModel();   
-    
+    String modo;
+    DefaultListModel modeloLista = new DefaultListModel();
     public InterfaceLocacao(GerenciarLocacao gerenciarLocacao) {
         initComponents();
         this.gerenciarLocacao = gerenciarLocacao; 
+        setLocationRelativeTo(null);
+        modo="Navegar";
+        ManipularInterface();
     }
 
     
     //Método que atualiza a 2 tabela
     public void LoadTableLocacao(){
         DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {
-       "Placa","Modelo","Marca","ano","potencia","lugares","categoria"
+      "Retirada","Devolução","Valor", "CNH","Placa"
        },0);
 
        for(int i = 0; i<gerenciarLocacao.getQuantElementos();i++){
            Object linha []=new Object[]{
-              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getRetirada(),
-              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getDevolucao(),
-              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getValor(),
-              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getPlacaVeiculo().getPlaca(),
-              ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getCNHCliente().getCNH()
+                  
+            ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getRetirada(),
+            ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getDevolucao(),
+            ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getValor(),
+            //((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getCNHCliente().getCNH(),
+           // ((Locacao)gerenciarLocacao.getLista().getElementoPeloIndice(i)).getPlacaVeiculo().getPlaca()
+              
+              
   
            };
-           this.modeloV = novoModelo;
+          novoModelo.addRow(linha);
        }
         this.modeloV = novoModelo;
         tabelaLocacao.setModel(modeloV); 
@@ -53,6 +62,68 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     
     //Método que atualiza a 1 tabela
     public void LoadTableLocacaoDisponivel(){
+    }
+    
+    
+    public void ManipularInterface(){
+        switch(modo){
+        case "Navegar":
+                txtDataRetirada.setEnabled(false);
+                txtDataDevolucao.setEnabled(false);
+                txtValorPago.setEnabled(false);
+                botaoNovoLocacao.setEnabled(true);
+                botaoEditarLocacao.setEnabled(false);
+                botaoExcluirLocacao.setEnabled(false);
+                botaoSalvarLocacao.setEnabled(false);
+                botaoCancelarLocacao.setEnabled(false);
+            break;
+        case "Novo":
+                txtDataRetirada.setEnabled(true);
+                txtDataDevolucao.setEnabled(true);
+                txtValorPago.setEnabled(true);
+             
+                botaoNovoLocacao.setEnabled(false);
+                botaoEditarLocacao.setEnabled(false);
+                botaoExcluirLocacao.setEnabled(false);
+                botaoSalvarLocacao.setEnabled(true);
+                botaoCancelarLocacao.setEnabled(true);
+                break;
+            case "Editar":
+                txtDataRetirada.setEnabled(true);
+                txtDataDevolucao.setEnabled(true);
+                txtValorPago.setEnabled(true);
+             
+                botaoNovoLocacao.setEnabled(false);
+                botaoEditarLocacao.setEnabled(false);
+                botaoExcluirLocacao.setEnabled(false);
+                botaoSalvarLocacao.setEnabled(true);
+                botaoCancelarLocacao.setEnabled(true);
+                break;
+            case "Excluir":
+                txtDataRetirada.setEnabled(false);
+                txtDataDevolucao.setEnabled(false);
+                txtValorPago.setEnabled(false);
+                botaoNovoLocacao.setEnabled(true);
+                botaoEditarLocacao.setEnabled(false);
+                botaoExcluirLocacao.setEnabled(true);
+                botaoSalvarLocacao.setEnabled(false);
+                botaoCancelarLocacao.setEnabled(false);
+                break;
+            case "Selecao":
+                txtDataRetirada.setEnabled(false);
+                txtDataDevolucao.setEnabled(false);
+                txtValorPago.setEnabled(false);
+             
+                botaoNovoLocacao.setEnabled(true);
+                botaoEditarLocacao.setEnabled(true);
+                botaoExcluirLocacao.setEnabled(true);
+                botaoSalvarLocacao.setEnabled(false);
+                botaoCancelarLocacao.setEnabled(false);
+               
+                break;
+        
+        }
+    
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,6 +165,9 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         botaoEditarLocacao = new javax.swing.JButton();
         botaoExcluirLocacao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListLocacao = new javax.swing.JList<>();
+        botaoMostrarLocacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +181,11 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         });
 
         botaoNumeroLugar.setText("N° de lugares");
+        botaoNumeroLugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNumeroLugarActionPerformed(evt);
+            }
+        });
 
         botaoFiltroOrdemCrescenteNLugar.setText("Ordem crescente");
 
@@ -240,9 +319,14 @@ public class InterfaceLocacao extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "CNH", "Placa", "Retirada", "Devolução", "Valor"
+                "Retirada", "Devolução", "Valor", "Placa", "CNH"
             }
         ));
+        tabelaLocacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaLocacaoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaLocacao);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar"));
@@ -271,6 +355,11 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         });
 
         botaoCancelarLocacao.setText("Cancelar");
+        botaoCancelarLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarLocacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -339,10 +428,25 @@ public class InterfaceLocacao extends javax.swing.JFrame {
         );
 
         botaoNovoLocacao.setText("Novo");
+        botaoNovoLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoLocacaoActionPerformed(evt);
+            }
+        });
 
         botaoEditarLocacao.setText("Editar");
+        botaoEditarLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarLocacaoActionPerformed(evt);
+            }
+        });
 
         botaoExcluirLocacao.setText("Excluir");
+        botaoExcluirLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirLocacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -379,15 +483,37 @@ public class InterfaceLocacao extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Realizar Locação", jPanel2);
 
+        jScrollPane3.setViewportView(jListLocacao);
+
+        botaoMostrarLocacao.setText("Mostrar");
+        botaoMostrarLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMostrarLocacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 684, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(botaoMostrarLocacao)))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(botaoMostrarLocacao)
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listar veículos locados", jPanel1);
@@ -428,7 +554,41 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoFiltroPotenciaActionPerformed
 
     private void botaoSalvarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarLocacaoActionPerformed
+        if (gerenciarLocacao == null) {
+            gerenciarLocacao = new GerenciarLocacao();
+        }
+        if(modo.equals("Novo")){
+        Locacao locacao = new Locacao();
+        //Cliente cliente = (Cliente) jComboBoxCNHCliente.getSelectedItem();
+        //Veiculo veiculoo = (Veiculo) jComboBoxVeiculo.getSelectedItem();
+        
+        String retirada =  txtDataRetirada.getText();
+        String devolução = txtDataDevolucao.getText();
+        double valor = Double.parseDouble(txtValorPago.getText());
 
+               
+        locacao.setRetirada(retirada);
+        locacao.setDevolucao(devolução);
+        locacao.setValor(valor);
+        
+        gerenciarLocacao.adicionar(locacao);
+        }else if(modo.equals("Editar")){  
+            int index = tabelaLocacao.getSelectedRow();
+            if (index >= 0 && index < gerenciarLocacao.getQuantElementos()) {           
+                Locacao l = (Locacao) gerenciarLocacao.getLista().getElementoPeloIndice(index);
+                l.setRetirada(txtDataRetirada.getText());
+                l.setDevolucao(txtDataDevolucao.getText());
+                l.setValor(Double.parseDouble(txtValorPago.getText()));               
+            }
+        }
+        System.out.println("lista"+gerenciarLocacao.listar());
+        LoadTableLocacao();
+        modo="Navegar";
+        ManipularInterface();
+  
+       txtDataRetirada.setText("");
+       txtDataDevolucao.setText("");
+       txtValorPago.setText("");
     }//GEN-LAST:event_botaoSalvarLocacaoActionPerformed
 
     private void txtDataRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataRetiradaActionPerformed
@@ -496,6 +656,112 @@ public class InterfaceLocacao extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botaoFiltroOrdemCrescentePotenciaActionPerformed
 
+    private void botaoNumeroLugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNumeroLugarActionPerformed
+    int nLugar = Integer.parseInt(txtFiltroNLugar.getText());
+    DefaultTableModel modelo = new DefaultTableModel(new Object [] {"Placa","Modelo","Marca","ano","potencia","lugares","categoria"},0);
+    
+    for(int i = 0; i < gerenciarVeiculo.tamanho(); i++) {
+        Object obj = gerenciarVeiculo.getLista().getElementoPeloIndice(i); 
+        if (obj instanceof Veiculo) { 
+            Veiculo veiculo = (Veiculo) obj; 
+            if (Integer.toString(veiculo.getQtdeLugares()).contains("5")) { 
+                Object linhaObjeto[] = new Object[]{
+                    veiculo.getPlaca(), veiculo.getModelo(), veiculo.getMarca(),
+                    veiculo.getAno(), veiculo.getPotencia(), veiculo.getQtdeLugares(),
+                    veiculo.getCategoria()
+                };
+                modelo.addRow(linhaObjeto);
+            }
+        }
+    }
+    tabelaVeiculoDisponivel.setModel(modelo);  
+    }//GEN-LAST:event_botaoNumeroLugarActionPerformed
+
+    private void botaoNovoLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoLocacaoActionPerformed
+    modo="Novo";
+    ManipularInterface();
+    }//GEN-LAST:event_botaoNovoLocacaoActionPerformed
+
+    private void botaoEditarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarLocacaoActionPerformed
+    modo="Editar";
+    ManipularInterface();
+    }//GEN-LAST:event_botaoEditarLocacaoActionPerformed
+
+    private void botaoExcluirLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirLocacaoActionPerformed
+      
+         int linhaSelecionada = tabelaLocacao.getSelectedRow();
+        if (linhaSelecionada < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um veículo para excluir.");
+            return;
+        }
+         //String placa = tabelaLocacao.getValueAt(linhaSelecionada, 0).toString();
+        
+        try {
+            //gerenciarLocacao.excluir(placa);
+            JOptionPane.showMessageDialog(null, "Locacao excluído com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+             
+            
+            ((DefaultTableModel) tabelaLocacao.getModel()).removeRow(linhaSelecionada);
+
+            LoadTableLocacao();
+            System.out.println("Lista de locações após exclusão: " + gerenciarLocacao.listar());
+
+        }
+        catch (Exception e) {
+            if (e.getMessage().equals("Veículo, com a placa informada, não encontrado.")) {
+                JOptionPane.showMessageDialog(this, "Veículo não encontrado.");
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        System.out.println("Erro ao excluir veículo: " + e.getMessage());
+    }
+    }//GEN-LAST:event_botaoExcluirLocacaoActionPerformed
+
+    private void botaoCancelarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarLocacaoActionPerformed
+    txtDataRetirada.setText("");
+    txtDataDevolucao.setText("");
+    txtValorPago.setText("");
+        
+    modo="Navegar";
+    ManipularInterface(); 
+    
+    }//GEN-LAST:event_botaoCancelarLocacaoActionPerformed
+
+    private void botaoMostrarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMostrarLocacaoActionPerformed
+    modeloLista.removeAllElements();
+    
+    for (int i = 0; i < gerenciarLocacao.getQuantElementos(); i++) {
+        // adicionar cada veículo encontrado ao modelo da lista
+        modeloLista.addElement(gerenciarLocacao.getLista().getElementoPeloIndice(i));
+    }
+    // setar o modelo da lista no JList
+    jListLocacao.setModel(modeloLista);
+    
+        
+        
+    }//GEN-LAST:event_botaoMostrarLocacaoActionPerformed
+
+    private void tabelaLocacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaLocacaoMouseClicked
+
+       // Obtém o índice da linha selecionada
+       int index = tabelaLocacao.getSelectedRow();
+
+       // Verifica se há uma linha selecionada e se o índice é válido
+       if (index >= 0 && index < gerenciarLocacao.tamanho()) {
+           // Obtém o veículo correspondente à linha selecionada
+         
+         Locacao l = (Locacao) gerenciarLocacao.getLista().getElementoPeloIndice(index);
+         // Carrega os dados do veículo na tela
+         
+        txtDataRetirada.setText(l.getRetirada());
+        txtDataDevolucao.setText(l.getDevolucao());
+        txtValorPago.setText(Double.toString(l.getValor()));
+
+        modo = "Selecao";
+        ManipularInterface();
+       }
+    }//GEN-LAST:event_tabelaLocacaoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -541,6 +807,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JButton botaoFiltroOrdemDecrescentePotencia;
     private javax.swing.JButton botaoFiltroPotencia;
     private javax.swing.JButton botaoMostrar;
+    private javax.swing.JButton botaoMostrarLocacao;
     private javax.swing.JButton botaoNovoLocacao;
     private javax.swing.JButton botaoNumeroLugar;
     private javax.swing.JButton botaoSalvarLocacao;
@@ -553,6 +820,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jListLocacao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -560,6 +828,7 @@ public class InterfaceLocacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabelaLocacao;
     private javax.swing.JTable tabelaVeiculoDisponivel;

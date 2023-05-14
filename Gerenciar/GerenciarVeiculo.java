@@ -9,6 +9,9 @@ public class GerenciarVeiculo implements IGerenciar{
     public GerenciarVeiculo(Lista veiculos) {
         this.veiculos = veiculos;
     }
+    public GerenciarVeiculo(){
+        veiculos = new Lista();
+    }
 
     public int getQuantElementos() { 
        int quant = 0;
@@ -18,10 +21,7 @@ public class GerenciarVeiculo implements IGerenciar{
         return quant;
     }
     
-    public GerenciarVeiculo(){
-        veiculos = new Lista();
-    }
-
+   
 
     @Override
     public void adicionar(Object veiculo) {

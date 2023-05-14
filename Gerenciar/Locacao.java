@@ -16,6 +16,7 @@ public class Locacao {
         this.cnhCliente = cNH;
         this.CNHCliente = CNHCliente;
     }
+    public Locacao(){}
 
     public String getDevolucao() {
         return devolucao;

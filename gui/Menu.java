@@ -297,24 +297,6 @@ public class Menu extends javax.swing.JFrame {
              Lista veiculos = new Lista();
              Lista categorias = new Lista();
 
-//             Lista locacao = new Lista();
-            //Categoria categoria = new Categoria(1, "Esportivo");
-            //categorias.adicionar(categoria);
-            //System.out.println("foi add uma categoria");
-            
-  //          GerenciarCategoria g = new GerenciarCategoria();
-    //        Categoria c = new Categoria(1, "Esportivo");
-      //      g.adicionar(c);
-        //    System.out.println("foi add uma categoria");
-    
-          //  new Menu(new GerenciarCliente(clientes), new GerenciarVeiculo(veiculos), new GerenciarLocacao(locacao, categorias, clientes, veiculos)).setVisible(true);
-
-
-             
-     
-           
-             
-             
              new Menu(new GerenciarCliente(clientes),new GerenciarVeiculo(veiculos), new GerenciarCategoria()).setVisible(true);
 
             }
