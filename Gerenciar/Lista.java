@@ -1,6 +1,7 @@
 package Gerenciar;
 
 public class Lista implements ILista {
+    //PENDÊNCIAS: TRATAMENTO DE EXCEÇÃO E MÉTODO LISTAR
     private Noh primeiro;
     private Noh ultimo;
     private int totalElementos = 0;
@@ -28,7 +29,7 @@ public class Lista implements ILista {
         }
         totalElementos ++;
     }
-
+// colocar thorws
     @Override
     public Object getElementoPeloIndice(int indice){
         if (indice < 0 || indice >= totalElementos) {

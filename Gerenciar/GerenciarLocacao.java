@@ -70,7 +70,7 @@ public class GerenciarLocacao implements IGerenciar {
        
     }
 
-
+    // IMPLEMENTAR THOWRS EXCEPTIONS
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     @Override

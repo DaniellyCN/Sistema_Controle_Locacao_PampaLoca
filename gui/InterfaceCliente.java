@@ -280,7 +280,8 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-         if(modo.equals("Novo")){
+     
+        if(modo.equals("Novo")){
             Cliente cliente = new Cliente();
 
             String nome =txNome.getText();

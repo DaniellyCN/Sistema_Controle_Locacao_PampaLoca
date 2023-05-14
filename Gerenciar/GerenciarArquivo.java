@@ -7,7 +7,7 @@ import java.io.IOException;
 public class GerenciarArquivo {
     private String[] arquivoEmLista;
     private String caminho;
-
+    //MUDAR O RETORNO PARA UMA LISTA SIMPLESMENTE EM getLinhaArquivo
     public GerenciarArquivo(String caminho, int colunas){
         arquivoEmLista = new String[colunas];
         this.caminho = caminho;

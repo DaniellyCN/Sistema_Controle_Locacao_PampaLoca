@@ -48,6 +48,7 @@ public class GerenciarVeiculo implements IGerenciar{
     }
 
     @Override
+    // IMPLEMENTAR THOWRS EXCEPTIONS
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     public void editar(String atual, String atributo, String novo) {
@@ -133,7 +134,7 @@ public class GerenciarVeiculo implements IGerenciar{
         return veiculosDisponiveis;
     }
 
-  
+    // Tratar método na Main
     //procura um objeto do tipo Veiculo dentro de uma 
     //lista chamada veiculos, comparando a placa do veículo com o parâmetro 
     //passado como argumento. Se a placa for encontrada na lista, o método retorna 

@@ -54,7 +54,7 @@ public class GerenciarCategoria implements IGerenciar{
     }
 
     @Override
-    
+    // IMPLEMENTAR THOWRS EXCEPTIONS
     // RECEBE TRÊS PARAMETROS: o PRIMEIRO É O ATUAL, O SEGUNDO É QUAL ATRIBUTO SERÁ EDITADO E O TERCEIRO É QUAL SERÁ O NOVO
     //Esse método foi pensado para editar qualquer um dos atributos da classe, por isso o usuário deve dizer qual deles será editado.
     public void editar(String atual, String atributo, String novo) {
@@ -99,7 +99,7 @@ public class GerenciarCategoria implements IGerenciar{
     public Lista getLista(){
         return categorias;
     }
-    
+    // Tratar exceção na main desse método
     public Categoria getCategoria(int identificador) throws NoSuchElementException{
         for(int i = 0; i < categorias.tamanho(); i++){
             Object obj  = categorias.getElementoPeloIndice(i);
